@@ -93,7 +93,7 @@ public class Mario {
         else {
           this.speedx = 0;
         }
-        this.animation(deltaTime);
+        //this.animation(deltaTime);
     }
     
     public void animation(double deltaTime){
@@ -131,14 +131,14 @@ public class Mario {
     );*/
     g.drawImage(
       this.image,
-   x,
+   this.x,
       this.y,
-      this.width,
-      this.height,
+      this.x+96 ,
+      this.y+96,
       this.framex * 32,
       this.framey * 32 + 1,
-      32,
-      32,
+      this.framex * 32+32,
+      this.framey * 32 + 1 + 32,
       null
     );
     //g.fillRect(this.x, this.y, this.width, this.height);
