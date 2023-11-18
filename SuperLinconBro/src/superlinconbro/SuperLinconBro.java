@@ -16,6 +16,8 @@ import javax.swing.Timer;
  *
  * @author Samuel
  */
+
+
 public class SuperLinconBro {
 
     /**
@@ -41,14 +43,17 @@ public class SuperLinconBro {
                 input.remove (ind);
             }
         });
-        Timer timer = new Timer(66, new ActionListener() {
+        //System.out.print("oi");
+        Timer timer = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 game.gamelLogic(input);
                 game.repaint();
                 input.forEach((x)->System.out.print(x));
+                
             }
         });
+        timer.start();
     }
     
 }

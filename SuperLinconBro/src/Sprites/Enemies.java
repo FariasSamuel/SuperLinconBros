@@ -4,10 +4,12 @@ import superlinconbro.GameLoop;
 
 import java.awt.*;
 import java.util.ArrayList;
+import superlinconbro.GameLoop;
 
 public abstract class Enemies {
     private int x, y;
     private int width, height;
+    private GameLoop game;
     private int speed;
     private boolean marked;
     private double lastAttack;
@@ -18,8 +20,6 @@ public abstract class Enemies {
     private int maxFrame;
     private int fps;
     private int frameInterval, frameTimer;
-
-    private GameLoop game;
 
     public int getX() {
         return x;

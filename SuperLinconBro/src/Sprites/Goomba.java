@@ -1,6 +1,7 @@
 package Sprites;
 
 import superlinconbro.GameLoop;
+
 import java.awt.*;
 
 public class Goomba extends Enemies{
