@@ -12,13 +12,13 @@ public class Goomba extends Enemies{
     private int direction;
 
     public Goomba(int x, int y, int width, int height, int direction, Game game, int range) {
-        super.setX(x);
-        super.setY(y);
-        super.setWidth(width);
-        super.setHeight(height);
+        this.setX(x);
+        this.setY(y);
+        this.setWidth(width);
+        this.setHeight(height);
         this.direction = direction;
-        super.setGame(game);
-        super.setRange(range);
+        this.setGame(game);
+        this.setRange(range);
     }
 
     @Override
@@ -27,14 +27,14 @@ public class Goomba extends Enemies{
     @Override
     public void update(int speed, int speedy, int time, int deltaTime) {
         //Gravidade
-        vy += 5;
-        super.setY(super.getY() + 5);
+        //vy += 5;
+       // this.setY(this.getY() + 5);
 
         //Fazer com que ele volte para o chao
-        if(!super.isMarked()){
-            if(super.getY()>super.getOriginY()){
+        if(!this.isMarked()){
+            if(this.getY()>this.getOriginY()){
                 vy = 0;
-                super.setY(getOriginY());
+                this.setY(getOriginY());
             }
 
 
