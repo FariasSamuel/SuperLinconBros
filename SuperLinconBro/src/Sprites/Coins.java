@@ -43,7 +43,7 @@ public class Coins {
 
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 16));
-        g.drawString("Moedas: " + counter, xe + 30, ye); 
+        g.drawString("X" + counter, xe + 5, ye); 
 
         // Atualiza o frame da animação se necessário
         long currentTime = System.currentTimeMillis();
