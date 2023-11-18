@@ -19,6 +19,22 @@ public class Goomba extends Enemies{
         this.direction = direction;
         this.setGame(game);
         this.setRange(range);
+        this.setSpeed(0);
+        vy = 0;
+        vx = -5;
+        weight = 1;
+        this.setOriginY(y);
+        originX = x;
+        direction = direction;
+        this.setRange(range);
+        this.setFramex(0);
+        this.setFramey(0);
+        //colocar a string da imagem
+        this.setImage();
+        this.setMaxFrame(2);
+        this.setFps(5);
+        this.setFrameInterval(1000/this.getFps());
+        this.setFrameTimer(0);
     }
 
     @Override
@@ -26,6 +42,13 @@ public class Goomba extends Enemies{
 
     @Override
     public void update(int speed, int speedy, int time, int deltaTime) {
+
+        this.setX(this.getX() - speed + this.getSpeed());
+        this.setY(this.getY() - speedy - vy);
+
+        this.setOriginY(this.getOriginY() - speedy);
+
+
         //Gravidade
         //vy += 5;
        // this.setY(this.getY() + 5);
