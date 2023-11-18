@@ -1,5 +1,7 @@
 package Sprites;
 
+import superlinconbro.GameLoop;
+
 import java.awt.*;
 import java.util.ArrayList;
 import superlinconbro.GameLoop;
@@ -14,7 +16,7 @@ public abstract class Enemies {
     private int range;
     private int framex, framey;
     private int originY;
-    private String image;
+    private Image image;
     private int maxFrame;
     private int fps;
     private int frameInterval, frameTimer;
@@ -67,7 +69,7 @@ public abstract class Enemies {
         return originY;
     }
 
-    public String getImage() {
+    public Image getImage() {
         return image;
     }
 
@@ -135,7 +137,7 @@ public abstract class Enemies {
         this.originY = originY;
     }
 
-    public void setImage(String image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
@@ -161,13 +163,26 @@ public abstract class Enemies {
 
     }
 
-    public void animation(int deltaTime){
-
+    public void animation(double deltaTime){
+        if (this.frameTimer > this.frameInterval) {
+            this.frameTimer = 0;
+            if (this.framex < this.maxFrame - 1){
+                this.framex++;
+            }
+            else{
+                this.framex = 0;
+            }
+        } else {
+            this.frameTimer += deltaTime;
+        }
     }
 
     public void draw(Graphics g){
+        g.drawImage(image, x, y, width, height, game);
+
 
     }
 
-    public abstract void update(int speed, int speedy, int time, int deltaTime);
+    public abstract void update(int speed, int speedy, int time, double deltaTime);
+
 }

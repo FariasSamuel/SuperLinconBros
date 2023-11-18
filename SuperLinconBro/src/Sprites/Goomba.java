@@ -2,11 +2,13 @@ package Sprites;
 
 import superlinconbro.GameLoop;
 
+import java.awt.*;
+
 public class Goomba extends Enemies{
 
     private int previousState;
 
-    //private followingState
+    private int followingState;
     private int vy, vx;
     private int weight;
     private int originX;
@@ -21,6 +23,10 @@ public class Goomba extends Enemies{
         this.setGame(game);
         this.setRange(range);
         this.setSpeed(0);
+        this.setMarked(false);
+        this.setLastAttack(0);
+        previousState = 0;
+        followingState = 1;
         vy = 0;
         vx = -5;
         weight = 1;
@@ -42,7 +48,7 @@ public class Goomba extends Enemies{
     public void update() { }
 
     @Override
-    public void update(int speed, int speedy, int time, int deltaTime) {
+    public void update(int speed, int speedy, int time, double deltaTime) {
 
         this.setX(this.getX() - speed + this.getSpeed());
         this.setY(this.getY() - speedy - vy);
@@ -65,6 +71,14 @@ public class Goomba extends Enemies{
         }
     }
 
+    @Override
+    public void draw(Graphics g){
+        super.draw(g);
+        Color brown = new Color(139, 69, 19);
+        g.setColor(brown);
+
+
+    }
 
 
 }
