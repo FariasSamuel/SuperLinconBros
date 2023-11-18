@@ -20,7 +20,7 @@ class Idle extends MarioState{
         //    this.mario.vy -= 20;
         this.mario.setFramex(0);
         this.mario.setFramey(0);
-        this.mario.setMaxFrame(3);
+        this.mario.setMaxFrame(1);
     }
     @Override
     public void handleInput(ArrayList<Integer> input) {

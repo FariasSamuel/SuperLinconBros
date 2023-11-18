@@ -63,18 +63,18 @@ public class Mario {
         this.y = 0;
         this.speedx = 0;
         this.speedy = 0;
-        this.framex = 0;
+        this.framex = 13;
         this.framey = 0;
-        this.maxFrame = 0;
+        this.maxFrame = 1;
         this.fps = 0;
-        this.frameInterval = 0;
+        this.frameInterval = 100;
         this.frameTimer = 0;
         this.states = new ArrayList<MarioState>();
         this.states.add(new Idle(this));
         this.states.add(new Running(this));
         this.currentState = this.states.get(0);
         this.currentState.enter();
-        String path = new File("src/Sprites/sprites.png").getAbsolutePath();
+        String path = new File("src/Sprites/metademario.png").getAbsolutePath();
         image = ImageIO.read(new File(path));
         System.out.println(path);
     }
@@ -93,7 +93,7 @@ public class Mario {
         else {
           this.speedx = 0;
         }
-        //this.animation(deltaTime);
+        this.animation(60);
     }
     
     public void animation(double deltaTime){
@@ -133,12 +133,12 @@ public class Mario {
       this.image,
    this.x,
       this.y,
-      this.x+96 ,
-      this.y+96,
-      this.framex * 32,
-      this.framey * 32 + 1,
-      this.framex * 32+32,
-      this.framey * 32 + 1 + 32,
+      this.x+48 ,
+      this.y+48,
+      this.framex*16+8,
+      this.framey * 16,
+      this.framex*16+24,
+      this.framey * 16 + 16,
       null
     );
     //g.fillRect(this.x, this.y, this.width, this.height);
