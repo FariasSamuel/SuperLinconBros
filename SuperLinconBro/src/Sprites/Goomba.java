@@ -2,7 +2,11 @@ package Sprites;
 
 import superlinconbro.GameLoop;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Goomba extends Enemies{
 
@@ -14,11 +18,11 @@ public class Goomba extends Enemies{
     private int originX;
     private int direction;
 
-    public Goomba(int x, int y, int width, int height, int direction, GameLoop game, int range) {
+    public Goomba (int x, int y, int width, int height, int direction, GameLoop game, int range) throws IOException {
         this.setX(x);
         this.setY(y);
-        this.setWidth(width);
-        this.setHeight(height);
+        this.setWidth(90);
+        this.setHeight(90);
         this.direction = direction;
         this.setGame(game);
         this.setRange(range);
@@ -36,12 +40,12 @@ public class Goomba extends Enemies{
         this.setRange(range);
         this.setFramex(0);
         this.setFramey(0);
-        //colocar a string da imagem
-        //this.setImage();
         this.setMaxFrame(2);
         this.setFps(5);
         this.setFrameInterval(1000/this.getFps());
         this.setFrameTimer(0);
+        String path = new File("src/Sprites/goomba.png").getAbsolutePath();
+        this.setImage(ImageIO.read(new File(path)));
     }
 
     @Override
@@ -76,9 +80,12 @@ public class Goomba extends Enemies{
         super.draw(g);
         Color brown = new Color(139, 69, 19);
         g.setColor(brown);
-
-
     }
 
+    public void animation(double deltaTime){
+    }
+
+    public void collison(){
+    }
 
 }

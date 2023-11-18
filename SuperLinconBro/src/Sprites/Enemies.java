@@ -2,6 +2,10 @@ package Sprites;
 
 import superlinconbro.GameLoop;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.util.ArrayList;
 import superlinconbro.GameLoop;
@@ -179,8 +183,6 @@ public abstract class Enemies {
 
     public void draw(Graphics g){
         g.drawImage(image, x, y, width, height, game);
-
-
     }
 
     public abstract void update(int speed, int speedy, int time, double deltaTime);
