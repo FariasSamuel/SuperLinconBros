@@ -5,8 +5,7 @@ public class Goomba extends Enemies{
     private int previousState;
 
     //private followingState
-    private int vy;
-    private int vx;
+    private int vy, vx;
     private int weight;
     private int originX;
     private int direction;

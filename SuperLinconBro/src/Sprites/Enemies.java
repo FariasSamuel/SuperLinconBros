@@ -4,25 +4,19 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Enemies {
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    private int x, y;
+    private int width, height;
     private Game game;
     private int speed;
     private boolean marked;
     private double lastAttack;
     private int range;
-    private int framex;
-    private int framey;
+    private int framex, framey;
     private int originY;
     private String image;
     private int maxFrame;
     private int fps;
-    private int frameInterval;
-    private int frameTimer;
-
-    //private Graphics graphics;
+    private int frameInterval, frameTimer;
 
     public int getX() {
         return x;
