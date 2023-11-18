@@ -50,6 +50,15 @@ public class Mario {
     private int framex;
     private int framey;
     private int maxFrame;
+
+    public int getMinFrame() {
+        return minFrame;
+    }
+
+    public void setMinFrame(int minFrame) {
+        this.minFrame = minFrame;
+    }
+    private int minFrame;
     private int fps;
     private double frameInterval;
     private double frameTimer;   
@@ -63,8 +72,9 @@ public class Mario {
         this.y = 0;
         this.speedx = 0;
         this.speedy = 0;
-        this.framex = 13;
+        this.framex = 0;
         this.framey = 0;
+        this.minFrame =0;
         this.maxFrame = 1;
         this.fps = 0;
         this.frameInterval = 100;
@@ -85,10 +95,10 @@ public class Mario {
         this.y += this.speedy;
         
         if (input.contains(39)) {
-            this.speedx = 20;
+            this.speedx = 10;
             
         } else if (input.contains(37)) {
-          this.speedx = -20;
+          this.speedx = -10;
         }
         else {
           this.speedx = 0;
@@ -103,7 +113,7 @@ public class Mario {
        this.framex++;
       }
       else{
-        this.framex = 0;
+        this.framex = this.minFrame;
       } 
     } else {
       this.frameTimer += deltaTime;
@@ -133,11 +143,11 @@ public class Mario {
       this.image,
    this.x,
       this.y,
-      this.x+48 ,
-      this.y+48,
-      this.framex*16+8,
+      this.x+64 ,
+      this.y+64,
+      this.framex*32,
       this.framey * 16,
-      this.framex*16+24,
+      this.framex*32+30,
       this.framey * 16 + 16,
       null
     );

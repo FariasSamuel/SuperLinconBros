@@ -23,9 +23,10 @@ public class Running extends MarioState{
 
     @Override
     public void enter() {
-        this.mario.setFramex(0);
-        this.mario.setFramey(1);
-        this.mario.setMaxFrame(3);
+        this.mario.setFramex(1);
+        this.mario.setFramey(0);
+        this.mario.setMaxFrame(4);
+        this.mario.setMinFrame(1);
     }
 
     @Override
