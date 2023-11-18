@@ -2,11 +2,12 @@ package Sprites;
 
 import java.awt.*;
 import java.util.ArrayList;
+import superlinconbro.GameLoop;
 
 public abstract class Enemies {
     private int x, y;
     private int width, height;
-    private Game game;
+    private GameLoop game;
     private int speed;
     private boolean marked;
     private double lastAttack;
@@ -34,7 +35,7 @@ public abstract class Enemies {
         return height;
     }
 
-    public Game getGame() {
+    public GameLoop getGame() {
         return game;
     }
 
@@ -102,7 +103,7 @@ public abstract class Enemies {
         this.height = height;
     }
 
-    public void setGame(Game game) {
+    public void setGame(GameLoop game) {
         this.game = game;
     }
 

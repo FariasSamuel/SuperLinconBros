@@ -1,5 +1,7 @@
 package Sprites;
 
+import superlinconbro.GameLoop;
+
 public class Goomba extends Enemies{
 
     private int previousState;
@@ -10,7 +12,7 @@ public class Goomba extends Enemies{
     private int originX;
     private int direction;
 
-    public Goomba(int x, int y, int width, int height, int direction, Game game, int range) {
+    public Goomba(int x, int y, int width, int height, int direction, GameLoop game, int range) {
         this.setX(x);
         this.setY(y);
         this.setWidth(width);
@@ -29,7 +31,7 @@ public class Goomba extends Enemies{
         this.setFramex(0);
         this.setFramey(0);
         //colocar a string da imagem
-        this.setImage();
+        //this.setImage();
         this.setMaxFrame(2);
         this.setFps(5);
         this.setFrameInterval(1000/this.getFps());
