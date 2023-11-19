@@ -13,13 +13,14 @@ import java.util.ArrayList;
 enum States  {
     IDLE(0),
     RUNNING(1),
-    JUMPING(2) ,
-    FALLING(3) ,
-    ATTACKING(4) ,
-    SITTING(5) ,
-    CLIMBING(6) ,
-    DEADING(7) ,
-    BALL(8);
+    SLIDING(2),
+    JUMPING(3) ,
+    FALLING(4) ,
+    ATTACKING(5) ,
+    SITTING(6) ,
+    CLIMBING(7) ,
+    DEADING(8) ,
+    BALL(9);
     
     public final int label;
 

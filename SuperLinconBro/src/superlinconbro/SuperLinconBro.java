@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -23,7 +24,7 @@ public class SuperLinconBro {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         JFrame janela = new  JFrame("SuperLinconBros");
         janela.setSize(600, 600);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

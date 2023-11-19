@@ -2,6 +2,11 @@ package Sprites;
 
 import superlinconbro.GameLoop;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.util.ArrayList;
 import superlinconbro.GameLoop;
@@ -16,11 +21,39 @@ public abstract class Enemies {
     private int range;
     private int framex, framey;
     private int originY;
-    private Image image;
+    private BufferedImage image;
     private int maxFrame;
     private int fps;
     private int frameInterval, frameTimer;
 
+
+    public abstract void update();
+
+    public void collison(){
+        //TODO
+    }
+
+    public void animation(double deltaTime){
+        if (this.frameTimer > this.frameInterval) {
+            this.frameTimer = 0;
+            if (this.framex < this.maxFrame - 1){
+                this.framex++;
+            }
+            else{
+                this.framex = 0;
+            }
+        } else {
+            this.frameTimer += deltaTime;
+        }
+    }
+
+    public void draw(Graphics g){
+        g.drawImage(image, x, y, width, height, game);
+    }
+
+    public abstract void update(int speed, int speedy, int time, double deltaTime);
+
+}
     public int getX() {
         return x;
     }
@@ -137,7 +170,7 @@ public abstract class Enemies {
         this.originY = originY;
     }
 
-    public void setImage(Image image) {
+    public void setImage(BufferedImage image) {
         this.image = image;
     }
 
@@ -156,33 +189,4 @@ public abstract class Enemies {
     public void setFrameTimer(int frameTimer) {
         this.frameTimer = frameTimer;
     }
-
-    public abstract void update();
-
-    public void collison(){
-
-    }
-
-    public void animation(double deltaTime){
-        if (this.frameTimer > this.frameInterval) {
-            this.frameTimer = 0;
-            if (this.framex < this.maxFrame - 1){
-                this.framex++;
-            }
-            else{
-                this.framex = 0;
-            }
-        } else {
-            this.frameTimer += deltaTime;
-        }
-    }
-
-    public void draw(Graphics g){
-        g.drawImage(image, x, y, width, height, game);
-
-
-    }
-
-    public abstract void update(int speed, int speedy, int time, double deltaTime);
-
 }

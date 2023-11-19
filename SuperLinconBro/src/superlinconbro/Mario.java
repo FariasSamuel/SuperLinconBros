@@ -21,13 +21,14 @@ import javax.imageio.ImageIO;
 enum States  {
     IDLE(0),
     RUNNING(1),
-    JUMPING(2) ,
-    FALLING(3) ,
-    ATTACKING(4) ,
-    SITTING(5) ,
-    CLIMBING(6) ,
-    DEADING(7) ,
-    BALL(8);
+    SLIDING(2),
+    JUMPING(3) ,
+    FALLING(4) ,
+    ATTACKING(5) ,
+    SITTING(6) ,
+    CLIMBING(7) ,
+    DEADING(8) ,
+    BALL(9);
     
     public final int label;
 
@@ -44,17 +45,28 @@ public class Mario {
     private int x;
     private int y;
     private BufferedImage image;
-    private int speedx;
-    private int speedy;
+    public int speedx;
+    public int speedy;
 
     private int framex;
     private int framey;
     private int maxFrame;
+
+    private int lastkey;
+    
+    public int getMinFrame() {
+        return minFrame;
+    }
+
+    public void setMinFrame(int minFrame) {
+        this.minFrame = minFrame;
+    }
+    private int minFrame;
     private int fps;
     private double frameInterval;
     private double frameTimer;   
     private ArrayList<MarioState> states;
-    private MarioState currentState;
+    public MarioState currentState;
      
     public Mario() throws IOException {
         this.width = 96;
@@ -65,16 +77,18 @@ public class Mario {
         this.speedy = 0;
         this.framex = 0;
         this.framey = 0;
-        this.maxFrame = 0;
+        this.minFrame =0;
+        this.maxFrame = 1;
         this.fps = 0;
-        this.frameInterval = 0;
+        this.frameInterval = 100;
         this.frameTimer = 0;
         this.states = new ArrayList<MarioState>();
         this.states.add(new Idle(this));
         this.states.add(new Running(this));
+        this.states.add(new Sliding(this));
         this.currentState = this.states.get(0);
         this.currentState.enter();
-        String path = new File("src/Sprites/sprites.png").getAbsolutePath();
+        String path = new File("src/Sprites/metademario.png").getAbsolutePath();
         image = ImageIO.read(new File(path));
         System.out.println(path);
     }
@@ -85,15 +99,23 @@ public class Mario {
         this.y += this.speedy;
         
         if (input.contains(39)) {
-            this.speedx = 20;
+            this.speedx = 10;
+            this.lastkey = 39;
             
         } else if (input.contains(37)) {
-          this.speedx = -20;
+          this.speedx = -10;
+          this.lastkey = 37;
         }
         else {
-          this.speedx = 0;
+            if(speedx < 0)
+              this.speedx += 1;
+            if(speedx > 0)
+              this.speedx += -1;
+            
+          
         }
-        //this.animation(deltaTime);
+        
+        this.animation(60);
     }
     
     public void animation(double deltaTime){
@@ -103,7 +125,7 @@ public class Mario {
        this.framex++;
       }
       else{
-        this.framex = 0;
+        this.framex = this.minFrame;
       } 
     } else {
       this.frameTimer += deltaTime;
@@ -129,18 +151,33 @@ public class Mario {
       this.width,
       this.height
     );*/
+    if(this.lastkey == 39){
     g.drawImage(
       this.image,
    this.x,
       this.y,
-      this.x+96 ,
-      this.y+96,
-      this.framex * 32,
-      this.framey * 32 + 1,
-      this.framex * 32+32,
-      this.framey * 32 + 1 + 32,
+      this.x+64 ,
+      this.y+64,
+      this.framex*32,
+      this.framey * 16,
+      this.framex*32+28,
+      this.framey * 16 + 16,
       null
     );
+    }else if(this.lastkey == 37){
+    g.drawImage(
+      this.image,
+      this.x+64,
+      this.y,
+      this.x ,
+      this.y+64,
+      this.framex*32,
+      this.framey * 16,
+      this.framex*32+28,
+      this.framey * 16 + 16,
+      null
+    );
+    }
     //g.fillRect(this.x, this.y, this.width, this.height);
   }
     public int getMaxFrame() {
