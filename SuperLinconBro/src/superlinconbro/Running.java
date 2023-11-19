@@ -32,7 +32,10 @@ public class Running extends MarioState{
     @Override
     public void handleInput(ArrayList<Integer> input) {
         if(input.contains(39) == false && input.contains(37) == false){
-            this.mario.setState(States.IDLE.label,0);
+            if(this.mario.speedx != 0)
+                this.mario.setState(States.SLIDING.label,0);
+            else
+                this.mario.setState(States.RUNNING.label,0);
         }
     }
     
