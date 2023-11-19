@@ -7,11 +7,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Goomba extends Enemies{
 
+    private Random random = new Random();
     private int previousState;
-
     private int followingState;
     private int vy, vx;
     private int weight;
@@ -23,7 +24,6 @@ public class Goomba extends Enemies{
         this.setY(y);
         this.setWidth(90);
         this.setHeight(90);
-        this.direction = direction;
         this.setGame(game);
         this.setRange(range);
         this.setSpeed(0);
@@ -32,11 +32,10 @@ public class Goomba extends Enemies{
         previousState = 0;
         followingState = 1;
         vy = 0;
-        vx = -5;
+        vx = -2;
         weight = 1;
         this.setOriginY(y);
         originX = x;
-        direction = direction;
         this.setRange(range);
         this.setFramex(0);
         this.setFramey(0);
@@ -46,6 +45,18 @@ public class Goomba extends Enemies{
         this.setFrameTimer(0);
         String path = new File("src/Sprites/goomba.png").getAbsolutePath();
         this.setImage(ImageIO.read(new File(path)));
+
+        this.direction = random.nextInt(2);
+
+        switch(direction){
+            case 0:
+                vx = -2;
+
+                break;
+            case 1:
+                vx = 2;
+                break;
+        }
     }
 
     @Override
@@ -61,8 +72,8 @@ public class Goomba extends Enemies{
 
 
         //Gravidade
-        //vy += 5;
-       // this.setY(this.getY() + 5);
+        vy += 5;
+        this.setY(this.getY() + 5);
 
         //Fazer com que ele volte para o chao
         if(!this.isMarked()){
