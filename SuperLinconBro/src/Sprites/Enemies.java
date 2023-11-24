@@ -53,7 +53,7 @@ public abstract class Enemies {
 
     public abstract void update(int speed, int speedy, int time, double deltaTime);
 
-}
+
     public int getX() {
         return x;
     }

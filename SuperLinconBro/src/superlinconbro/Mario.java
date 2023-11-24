@@ -71,8 +71,8 @@ public class Mario {
     public Mario() throws IOException {
         this.width = 96;
         this.height = 96;
-        this.x = 0;
-        this.y = 0;
+        this.x = 404;
+        this.y = 404;
         this.speedx = 0;
         this.speedy = 0;
         this.framex = 0;
