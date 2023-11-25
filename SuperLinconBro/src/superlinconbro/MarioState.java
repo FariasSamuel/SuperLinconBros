@@ -1,8 +1,10 @@
+package superlinconbro;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package superlinconbro;
+
 
 import java.util.ArrayList;
 
@@ -15,11 +17,11 @@ enum States  {
     RUNNING(1),
     SLIDING(2),
     JUMPING(3) ,
-    FALLING(4) ,
+    DEADING(4) ,
     ATTACKING(5) ,
     SITTING(6) ,
     CLIMBING(7) ,
-    DEADING(8) ,
+    FALLING(8) ,
     BALL(9);
     
     public final int label;

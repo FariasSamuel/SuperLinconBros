@@ -1,10 +1,9 @@
 package superlinconbro;
 
 
+
+
 import java.util.ArrayList;
-import superlinconbro.Mario;
-import superlinconbro.MarioState;
-import superlinconbro.States;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -36,6 +35,9 @@ public class Running extends MarioState{
                 this.mario.setState(States.SLIDING.label,0);
             else
                 this.mario.setState(States.RUNNING.label,0);
+        }
+        if(input.contains(38)){
+            this.mario.setState(States.JUMPING.label,1);
         }
     }
     

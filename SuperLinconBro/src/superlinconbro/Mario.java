@@ -1,8 +1,10 @@
+package superlinconbro;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package superlinconbro;
+
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -23,11 +25,11 @@ enum States  {
     RUNNING(1),
     SLIDING(2),
     JUMPING(3) ,
-    FALLING(4) ,
+    DEADING(4) ,
     ATTACKING(5) ,
     SITTING(6) ,
     CLIMBING(7) ,
-    DEADING(8) ,
+    FALLING(8) ,
     BALL(9);
     
     public final int label;
@@ -48,49 +50,74 @@ public class Mario {
     public int speedx;
     public int speedy;
 
-    private int framex;
-    private int framey;
+    private float framex;
+    private float framey;
     private int maxFrame;
 
     private int lastkey;
+    private boolean grow;
     
-    public int getMinFrame() {
+    public float getMinFrame() {
         return minFrame;
     }
 
-    public void setMinFrame(int minFrame) {
+    public void setMinFrame(float minFrame) {
         this.minFrame = minFrame;
     }
-    private int minFrame;
+    private float minFrame;
     private int fps;
     private double frameInterval;
     private double frameTimer;   
     private ArrayList<MarioState> states;
     public MarioState currentState;
-     
+    public int weight;
     public Mario() throws IOException {
+        this.width = 64;
+        this.height = 64;
+        this.x = 0;
+        this.y = 96;
         this.width = 96;
         this.height = 96;
         this.x = 404;
         this.y = 404;
         this.speedx = 0;
         this.speedy = 0;
+        this.weight = 5;
         this.framex = 0;
-        this.framey = 0;
+        this.framey = 32;
         this.minFrame =0;
         this.maxFrame = 1;
         this.fps = 0;
         this.frameInterval = 100;
         this.frameTimer = 0;
+        this.grow = false;
         this.states = new ArrayList<MarioState>();
         this.states.add(new Idle(this));
         this.states.add(new Running(this));
         this.states.add(new Sliding(this));
+        this.states.add(new Jumping(this));
+        this.states.add(new Deading(this));
         this.currentState = this.states.get(0);
         this.currentState.enter();
         String path = new File("src/Sprites/metademario.png").getAbsolutePath();
         image = ImageIO.read(new File(path));
         System.out.println(path);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public void move(ArrayList<Integer> input, double deltaTime){
@@ -111,8 +138,10 @@ public class Mario {
               this.speedx += 1;
             if(speedx > 0)
               this.speedx += -1;
-            
-          
+        }
+        
+        if(input.contains(65)){
+            this.setState(States.DEADING.label,1);
         }
         
         this.animation(60);
@@ -139,42 +168,56 @@ public class Mario {
     } else if (this.speedx < 0) {
       x = (this.x + this.width) * -1;
     }
-
-    /*g.drawImage(
-      this.image,
-      this.framex * 32,
-      this.framey * 32 + 1,
-      32,
-      32,
-      x,
-      this.y,
-      this.width,
-      this.height
-    );*/
+    float fxb = 0,fxe = 0;
+    float fyb = 0,fye = 0;
+    if(this.grow){
+        fye = this.framey * 16 + 24  + 64;
+        fyb = this.framey * 16 + 50;
+        fxb =this.framex*32 - 8;
+        fxe = this.framex*32 + 24;
+    }else{
+        fye = this.framey * 16 + 24;
+        fyb = this.framey * 16;
+        fxb =this.framex*32 ;
+        fxe = this.framex*32 + 28;
+    }
+    
     if(this.lastkey == 39){
     g.drawImage(
       this.image,
    this.x,
       this.y,
-      this.x+64 ,
-      this.y+64,
-      this.framex*32,
-      this.framey * 16,
-      this.framex*32+28,
-      this.framey * 16 + 16,
+      this.x+this.width ,
+      this.y+this.height,
+      (int)fxb,
+      (int)fyb,
+      (int)fxe,
+      (int)fye,
       null
     );
+    /*g.drawImage(
+      this.image,
+   this.x,
+      this.y,
+      this.x+this.width ,
+      this.y+this.height,
+      (int)(5.5f*32),
+      8,
+      (int)(5.5*32 + 32),
+      8+24,
+      null
+    );*/
     }else if(this.lastkey == 37){
     g.drawImage(
       this.image,
-      this.x+64,
+      this.x+this.width ,
       this.y,
       this.x ,
-      this.y+64,
-      this.framex*32,
-      this.framey * 16,
-      this.framex*32+28,
-      this.framey * 16 + 16,
+      this.y + this.height,
+      (int)fxb,
+      (int)fyb,
+      (int)fxe,
+      (int)fye,
       null
     );
     }
@@ -205,19 +248,19 @@ public class Mario {
         this.height = height;
     }
 
-    public int getFramex() {
+    public float getFramex() {
         return framex;
     }
 
-    public void setFramex(int framex) {
+    public void setFramex(float framex) {
         this.framex = framex;
     }
 
-    public int getFramey() {
+    public float getFramey() {
         return framey;
     }
 
-    public void setFramey(int framey) {
+    public void setFramey(float framey) {
         this.framey = framey;
     }
 
@@ -252,5 +295,20 @@ public class Mario {
         }
     }
     
+    public void setGrow(boolean g){
+        if(!g){
+            this.grow = false;
+            this.height = 64;
+            this.width = 64;
+        }else{
+            this.grow = true;
+            this.height = 96;
+            this.width = 96;
+        }
+    }
     
+    public boolean onGround(){
+        System.out.println(this.y + this.height);
+        return (this.y + 64>=160);
+    }
 }

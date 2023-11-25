@@ -1,8 +1,10 @@
+package superlinconbro;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package superlinconbro;
+
 
 import java.util.ArrayList;
 
@@ -27,6 +29,9 @@ class Idle extends MarioState{
     public void handleInput(ArrayList<Integer> input) {
         if(input.contains(39)|| input.contains(37)){
             this.mario.setState(States.RUNNING.label,1);
+        }
+        if(input.contains(38)){
+            this.mario.setState(States.JUMPING.label,1);
         }
     }
 }

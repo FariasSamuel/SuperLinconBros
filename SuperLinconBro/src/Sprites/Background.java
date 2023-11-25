@@ -1,6 +1,6 @@
 package Sprites;
 
-import java.awt.Graphics;
+/*import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,3 +86,4 @@ public class Background {
 		    }
     
 }
+*/
