@@ -71,7 +71,9 @@ public class Mario {
     private ArrayList<MarioState> states;
     public MarioState currentState;
     public int weight;
-    public Mario() throws IOException {
+    public GameLoop game;
+    public Mario(GameLoop game) throws IOException {
+        this.game = game;
         this.width = 64;
         this.height = 64;
         this.x = 0;
@@ -125,20 +127,26 @@ public class Mario {
         this.x += this.speedx;
         this.y += this.speedy;
         
-        if (input.contains(39)) {
-            this.speedx = 10;
-            this.lastkey = 39;
-            
-        } else if (input.contains(37)) {
-          this.speedx = -10;
-          this.lastkey = 37;
-        }
-        else {
-            if(speedx < 0)
-              this.speedx += 1;
-            if(speedx > 0)
-              this.speedx += -1;
-        }
+            if (input.contains(39) && (this.x + this.width < this.game.width/2)) {
+                this.speedx = 10;
+                this.lastkey = 39;
+
+            } else if (input.contains(37)&& (this.x > 0)) {
+              this.speedx = -10;
+              this.lastkey = 37;
+            }else {
+                if(this.x + this.width >= this.game.width/2){
+                    this.game.setCameraX(this.game.getCameraX()+1);
+                }
+                //if(!input.contains(39) && !input.contains(39) ){
+                    if(speedx < 0)
+                      this.speedx += 1;
+                    if(speedx > 0)
+                      this.speedx += -1;
+                //}
+            }
+       
+        
         
         if(input.contains(65)){
             this.setState(States.DEADING.label,1);

@@ -32,11 +32,17 @@ import javax.swing.JPanel;
  * @author Samuel
  */
 public class GameLoop extends  JPanel{
-    private int width;
+    public int width;
     private int heigth;
     private Mario mario;
-    public GameLoop() throws IOException{
-       this.mario = new Mario();
+    private ArrayList<Tile> tiles;
+    
+    private int CameraX;
+    private int CameraY;
+    
+    public GameLoop(int width) throws IOException{
+       this.mario = new Mario(this);
+      this.width = width;
     }
     
     @Override
@@ -49,10 +55,25 @@ public class GameLoop extends  JPanel{
     
     public void gamelLogic(ArrayList<Integer>input){
         mario.move(input,0);
+        System.out.println(CameraX);
     }
     
     public void restart(){
 
     }
+    public int getCameraX() {
+        return CameraX;
+    }
 
+    public void setCameraX(int CameraX) {
+        this.CameraX = CameraX;
+    }
+
+    public int getCameraY() {
+        return CameraY;
+    }
+
+    public void setCameraY(int CameraY) {
+        this.CameraY = CameraY;
+    }
 }

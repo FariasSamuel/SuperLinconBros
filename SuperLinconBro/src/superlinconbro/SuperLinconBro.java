@@ -29,7 +29,7 @@ public class SuperLinconBro {
         janela.setSize(600, 600);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setVisible(true);
-        GameLoop game = new GameLoop();
+        GameLoop game = new GameLoop(600);
         janela.add(game);
         ArrayList<Integer> input = new ArrayList();     
         janela.addKeyListener(new KeyAdapter(){
@@ -50,7 +50,7 @@ public class SuperLinconBro {
             public void actionPerformed(ActionEvent e) {
                 game.gamelLogic(input);
                 game.repaint();
-                input.forEach((x)->System.out.print(x));
+                //input.forEach((x)->System.out.print(x));
                 
             }
         });
