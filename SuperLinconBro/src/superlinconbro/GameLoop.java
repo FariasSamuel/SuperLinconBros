@@ -41,8 +41,41 @@ public class GameLoop extends  JPanel{
     private int CameraY;
     
     public GameLoop(int width) throws IOException{
-       this.mario = new Mario(this);
+       
+       this.tiles = new ArrayList<Tile>();
       this.width = width;
+      tiles.add(new Tile(256, 340,16 , 16, 384, 0, 400, 16));
+       tiles.add(new Tile(352, 340,16 , 16, 384, 0, 400, 16));
+       tiles.add(new Tile(416, 340,16 , 16, 384, 0, 400, 16));
+       tiles.add(new Tile(480, 340,16 , 16, 384, 0, 400, 16));
+       tiles.add(new Tile(416, 244,16 , 16, 384, 0, 400, 16));
+       
+       //tijolos
+       tiles.add(new Tile(384, 340,16 , 16, 32, 0, 48, 16));
+       tiles.add(new Tile(448, 340,16 , 16, 32, 0, 48, 16));
+       
+       //moitas
+       tiles.add(new Tile(193, 436,48, 16, 176, 144, 224, 160));
+       tiles.add(new Tile(240, 436,48, 16, 176, 144, 224, 160));
+       tiles.add(new Tile(736, 436,48, 16, 176, 144, 224, 160));
+       tiles.add(new Tile(0, 404,48, 32, 320, 128, 368, 160));
+       tiles.add(new Tile(1098, 404,48, 32, 320, 128, 368, 160));
+       
+       //canos
+       tiles.add(new Tile(576, 404,32, 32, 0, 128, 32, 160));
+       tiles.add(new Tile(860, 372,32, 32, 0, 128, 32, 160));
+       tiles.add(new Tile(1180, 340,32, 32, 0, 128, 32, 160));
+       
+       //partedebaixodeumcano
+       tiles.add(new Tile(860, 436,32, 16, 0, 144, 32, 160));
+       tiles.add(new Tile(1180, 404,32, 16, 0, 144, 32, 160));
+       tiles.add(new Tile(1180, 436,32, 16, 0, 144, 32, 160));
+       
+       //nuvens
+       tiles.add(new Tile(96, 128,32, 32, 0, 320, 48, 352));
+       tiles.add(new Tile(640, 128,32, 32, 0, 320, 48, 352));
+       
+       this.mario = new Mario(this);
     }
     
     @Override
@@ -51,10 +84,17 @@ public class GameLoop extends  JPanel{
         g.fillRect(0, 0, 600, 600);
         g.setColor(Color.black);
         mario.paint(g);
+        for (Tile tile : tiles) {
+            tile.draw(g);
+        }
+
     }
     
     public void gamelLogic(ArrayList<Integer>input){
         mario.move(input,0);
+        for (Tile tile : tiles) {
+            tile.update(CameraX,CameraY);
+        }
         System.out.println(CameraX);
     }
     

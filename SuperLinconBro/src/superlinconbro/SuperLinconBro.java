@@ -28,7 +28,7 @@ public class SuperLinconBro {
         JFrame janela = new  JFrame("SuperLinconBros");
         janela.setSize(600, 600);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setVisible(true);
+        
         GameLoop game = new GameLoop(600);
         janela.add(game);
         ArrayList<Integer> input = new ArrayList();     
@@ -50,11 +50,12 @@ public class SuperLinconBro {
             public void actionPerformed(ActionEvent e) {
                 game.gamelLogic(input);
                 game.repaint();
-                //input.forEach((x)->System.out.print(x));
+                input.forEach((x)->System.out.print(x));
                 
             }
         });
         timer.start();
+        janela.setVisible(true);
     }
     
 }

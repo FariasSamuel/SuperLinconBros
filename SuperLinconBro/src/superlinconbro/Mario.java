@@ -77,11 +77,9 @@ public class Mario {
         this.width = 64;
         this.height = 64;
         this.x = 0;
-        this.y = 96;
+        this.y = 404;
         this.width = 96;
         this.height = 96;
-        this.x = 404;
-        this.y = 404;
         this.speedx = 0;
         this.speedy = 0;
         this.weight = 5;
@@ -127,7 +125,7 @@ public class Mario {
         this.x += this.speedx;
         this.y += this.speedy;
         
-            if (input.contains(39) && (this.x + this.width < this.game.width/2)) {
+            if (input.contains(39)) {
                 this.speedx = 10;
                 this.lastkey = 39;
 
@@ -135,18 +133,21 @@ public class Mario {
               this.speedx = -10;
               this.lastkey = 37;
             }else {
-                if(this.x + this.width >= this.game.width/2){
-                    this.game.setCameraX(this.game.getCameraX()+1);
-                }
+                
                 //if(!input.contains(39) && !input.contains(39) ){
                     if(speedx < 0)
-                      this.speedx += 1;
+                      this.speedx += 2;
                     if(speedx > 0)
-                      this.speedx += -1;
+                      this.speedx += -2;
                 //}
             }
        
-        
+        if (this.x > (this.game.width - this.width + 30) / 2) {
+          this.x = (this.game.width - this.width + 30) / 2;
+          this.game.setCameraX(this.game.getCameraX()-5);
+        }else{
+            this.game.setCameraX(0);
+        }
         
         if(input.contains(65)){
             this.setState(States.DEADING.label,1);
@@ -317,6 +318,7 @@ public class Mario {
     
     public boolean onGround(){
         System.out.println(this.y + this.height);
-        return (this.y + 64>=160);
+        
+        return (this.y + this.height>=470);
     }
 }
