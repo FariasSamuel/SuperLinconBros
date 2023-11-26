@@ -1,15 +1,9 @@
-package Sprites;
-
-import superlinconbro.GameLoop;
+package superlinconbro;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
+
 import java.awt.*;
-import java.util.ArrayList;
-import superlinconbro.GameLoop;
+import java.io.IOException;
 
 public abstract class Enemies {
     private int x, y;
@@ -25,21 +19,43 @@ public abstract class Enemies {
     private int maxFrame;
     private int fps;
     private int frameInterval, frameTimer;
+    private Mario mario;
 
-
-    public abstract void update();
-
-    public void collison(){
-        //TODO
+    public Enemies() throws IOException {
+        this.mario = new Mario(game);
     }
 
-    public void animation(double deltaTime){
+    public abstract void update(int speed, int speedy, int time, double deltaTime);
+
+    public void collision() {
+        if (this.mario.getX() + this.mario.getWidth() > this.getX() + 60 &&
+                this.mario.getX() + this.mario.getWidth() < this.getX() + 80 &&
+                this.mario.getY() + this.mario.getHeight() >= this.getY() &&
+                this.mario.getY() < this.getY() + this.getHeight() &&
+                this.mario.currentState.getState() != States.DYING) {
+            this.mario.setState(8, 0);
+        }
+        if (this.mario.getX() < this.x + this.width - 60 &&
+                this.mario.getX() > this.x + this.width - 80 &&
+                this.mario.getY() + this.mario.getHeight() >= this.y &&
+                this.mario.getY() < this.y + this.height &&
+                this.mario.currentState.getState() != States.DYING) {
+            this.mario.setState(8, 0);
+        }
+        if (this.mario.getX() + this.mario.getWidth() > this.x + 60 &&
+                this.mario.getX() < this.x + this.width - 60 &&
+                this.mario.getY() + this.mario.getHeight() + this.mario.getSpeedy() >= this.y &&
+                this.mario.getY() + this.mario.getHeight() + this.mario.getSpeedy() < this.y + this.height) {
+            this.isMarked(true);
+        }
+    }
+
+    public void animation(double deltaTime) {
         if (this.frameTimer > this.frameInterval) {
             this.frameTimer = 0;
-            if (this.framex < this.maxFrame - 1){
+            if (this.framex < this.maxFrame - 1) {
                 this.framex++;
-            }
-            else{
+            } else {
                 this.framex = 0;
             }
         } else {
@@ -47,12 +63,19 @@ public abstract class Enemies {
         }
     }
 
-    public void draw(Graphics g){
-        g.drawImage(image, x, y, width, height, game);
+    public void draw(Graphics g) {
+        g.drawImage(
+                this.image,
+                this.x,
+                this.y,
+                this.x + 64,
+                this.y + 64,
+                this.framex * 32,
+                this.framey * 16,
+                this.framex * 32 + 28,
+                this.framey * 16 + 16,
+                null);
     }
-
-    public abstract void update(int speed, int speedy, int time, double deltaTime);
-
 
     public int getX() {
         return x;
@@ -78,7 +101,7 @@ public abstract class Enemies {
         return speed;
     }
 
-    public boolean isMarked() {
+    public boolean isMarked(boolean b) {
         return marked;
     }
 
@@ -102,7 +125,7 @@ public abstract class Enemies {
         return originY;
     }
 
-    public Image getImage() {
+    public BufferedImage getImage() {
         return image;
     }
 

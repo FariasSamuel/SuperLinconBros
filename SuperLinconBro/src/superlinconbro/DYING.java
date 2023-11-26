@@ -12,9 +12,9 @@ import java.util.ArrayList;
  *
  * @author Samuel
  */
-public class Deading extends MarioState{
-    public Deading(Mario mario) {
-        super(States.DEADING,mario);
+public class DYING extends MarioState{
+    public DYING(Mario mario) {
+        super(States.DYING,mario);
     }
 
     @Override

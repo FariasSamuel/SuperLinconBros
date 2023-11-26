@@ -25,7 +25,7 @@ enum States  {
     RUNNING(1),
     SLIDING(2),
     JUMPING(3) ,
-    DEADING(4) ,
+    DYING(4) ,
     ATTACKING(5) ,
     SITTING(6) ,
     CLIMBING(7) ,
@@ -96,7 +96,7 @@ public class Mario {
         this.states.add(new Running(this));
         this.states.add(new Sliding(this));
         this.states.add(new Jumping(this));
-        this.states.add(new Deading(this));
+        this.states.add(new DYING(this));
         this.currentState = this.states.get(0);
         this.currentState.enter();
         String path = new File("src/Sprites/metademario.png").getAbsolutePath();
@@ -104,6 +104,9 @@ public class Mario {
         System.out.println(path);
     }
 
+    public int getSpeedy(){
+        return speedy;
+    }
     public int getX() {
         return x;
     }
@@ -150,7 +153,7 @@ public class Mario {
         }
         
         if(input.contains(65)){
-            this.setState(States.DEADING.label,1);
+            this.setState(States.DYING.label,1);
         }
         
         this.animation(60);

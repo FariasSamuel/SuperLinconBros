@@ -17,13 +17,13 @@ enum States  {
     RUNNING(1),
     SLIDING(2),
     JUMPING(3) ,
-    DEADING(4) ,
+    DYING(4) ,
     ATTACKING(5) ,
     SITTING(6) ,
     CLIMBING(7) ,
     FALLING(8) ,
     BALL(9);
-    
+
     public final int label;
 
     private States(int label) {
