@@ -39,7 +39,7 @@ public class GameLoop extends  JPanel{
     
     private int CameraX;
     private int CameraY;
-    
+    private Coins coin;
     public GameLoop(int width) throws IOException{
        
        this.tiles = new ArrayList<Tile>();
@@ -76,6 +76,8 @@ public class GameLoop extends  JPanel{
        tiles.add(new Tile(640, 128,32, 32, 0, 320, 48, 352));
        
        this.mario = new Mario(this);
+       
+       this.coin = new Coins(20,20);
     }
     
     @Override
@@ -87,11 +89,12 @@ public class GameLoop extends  JPanel{
         for (Tile tile : tiles) {
             tile.draw(g);
         }
-
+        coin.draw(g);
     }
     
     public void gamelLogic(ArrayList<Integer>input){
         mario.move(input,0);
+        coin.update();
         for (Tile tile : tiles) {
             tile.update(CameraX,CameraY);
         }
