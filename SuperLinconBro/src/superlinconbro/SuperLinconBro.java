@@ -26,10 +26,10 @@ public class SuperLinconBro {
      */
     public static void main(String[] args) throws IOException {
         JFrame janela = new  JFrame("SuperLinconBros");
-        janela.setSize(600, 600);
+        janela.setSize(960, 480);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        GameLoop game = new GameLoop(600);
+        GameLoop game = new GameLoop(960);
         janela.add(game);
         ArrayList<Integer> input = new ArrayList();     
         janela.addKeyListener(new KeyAdapter(){

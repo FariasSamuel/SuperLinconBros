@@ -82,8 +82,8 @@ public class GameLoop extends  JPanel{
     
     @Override
     public void paint(Graphics g){
-        g.setColor(Color.white);
-        g.fillRect(0, 0, 600, 600);
+        g.setColor(new Color(93,148,251));
+        g.fillRect(0, 0, 960, 480);
         g.setColor(Color.black);
         mario.paint(g);
         for (Tile tile : tiles) {
