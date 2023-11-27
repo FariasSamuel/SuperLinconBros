@@ -24,7 +24,7 @@ public class Tile {
 
     public Tile(int x, int y, int width, int height, int xi, int yi, int xf, int yf) throws IOException {
         this.x = x;
-        this.y = y;
+        this.y = (y+16);
         this.xi = xi;
         this.yi = yi;
         this.xf = xf;
@@ -35,12 +35,25 @@ public class Tile {
         image = ImageIO.read(new File(path));
 
     }
+    
+    public Tile(int x, int y, int width, int height, int xi, int yi, int xf, int yf, BufferedImage image) {
+        this.x = x;
+        this.y = (y+16);
+        this.xi = xi;
+        this.yi = yi;
+        this.xf = xf;
+        this.yf = yf;
+        this.width = width;
+        this.height = height;
+        this.image = image;
+    }
 
     public void update(int speedx, int speedy) {
         this.x += speedx;
         this.y += speedy;
     }
-
+    
+   
     public void draw(Graphics g) {  
         g.drawImage(
             this.image, // Imagem a ser desenhada
