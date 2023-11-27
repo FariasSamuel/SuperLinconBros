@@ -1,5 +1,10 @@
 package superlinconbro;
 
+/**
+ *
+ * @author hubert
+ */
+
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
