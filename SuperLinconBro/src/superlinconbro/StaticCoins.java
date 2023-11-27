@@ -1,15 +1,18 @@
 
 package superlinconbro;
 
+/**
+ *
+ * @author hubert
+ */
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
-/**
- *
- * @author hubert
- */
+
+
 public class StaticCoins extends AbstractCoins{
     private GameLoop game;
     private String path = new File("src/Sprites/coins.png").getAbsolutePath();
@@ -37,7 +40,7 @@ public class StaticCoins extends AbstractCoins{
                  this.getX() + this.getWidth(),
                  this.getY() + this.getHeight(),
                  0, 0,
-                 16, 16,game);
+                 10, 16,game);
         }
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 16)); 

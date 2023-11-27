@@ -17,7 +17,7 @@ public abstract class AbstractCoins {
     private int height;
     private int x;
     private int y;
-    private static final int xE = 20;
+    private static final int xE = 50;
     private static final int yE = 50;
     private int maxFrame;
     private int minFrame;

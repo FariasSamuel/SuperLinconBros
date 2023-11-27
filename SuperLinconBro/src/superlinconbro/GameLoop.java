@@ -78,7 +78,7 @@ public class GameLoop extends  JPanel{
        
        this.mario = new Mario(this);
        
-       this.coin = new Coins(20,20);
+       this.coin = new Coins(70,70);
        
        this.staticCoin = new StaticCoins(300, 300);
     }
@@ -93,6 +93,7 @@ public class GameLoop extends  JPanel{
             tile.draw(g);
         }
         coin.draw(g);
+        staticCoin.draw(g);
     }
     
     public void gamelLogic(ArrayList<Integer>input){

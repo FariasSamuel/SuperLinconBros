@@ -5,14 +5,20 @@ package superlinconbro;
  * @author hubert
  */
 
+
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
-import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 
 public class Coins extends AbstractCoins{
     private GameLoop game;
     private final int position[] = {0,28,60,88};
+    private double amplitude = -40.0; // Amplitude da função senoidal
+    private double frequency = 2.0; // Frequência da função senoidal
+    private double time = 0.0; 
+    
+    
     public Coins (int x, int y) throws IOException {
         this.setX(x);
         this.setY(y);
@@ -35,13 +41,13 @@ public class Coins extends AbstractCoins{
     }
     
     @Override
-    public void draw(Graphics g) {
         
-        g.drawImage(this.getImage(), 
-                this.getX(), 
-                this.getY(), 
-                this.getX()+this.getWidth(), 
-                this.getY()+this.getHeight(),
+    public void draw(Graphics g) {
+        g.drawImage(this.getImage(),
+                this.getX(),
+                (int) (this.getY() + amplitude * sin(frequency * time)),
+                this.getX() + this.getWidth(),
+                (int) (this.getY() + this.getHeight() + amplitude * sin(frequency * time)),
                 this.position[this.getFramex()],
                 0,
                 this.position[this.getFramex()] + 10,
@@ -49,20 +55,19 @@ public class Coins extends AbstractCoins{
                 game);
     }
   
-    public void animation(double deltatime) {
+        public void animation(double deltaTime) {
         if (this.getFrameTimer() > this.getFrameInterval()) {
             this.setFrameTimer(0);
-            
-            if (this.getFramex() < this.getMaxFrame() - 1){
+
+            if (this.getFramex() < this.getMaxFrame() - 1) {
                 this.setFramex(this.getFramex() + 1);
             } else {
                 this.setFramex(this.getMinFrame());
             }
         } else {
-            this.setFrameTimer(this.getFrameTimer() + deltatime);
-        }  
-        long currentTimeMillis = System.currentTimeMillis();
-        this.setY( 20*(int)cos(currentTimeMillis));
+            this.setFrameTimer(this.getFrameTimer() + deltaTime);
+        }
+        this.time += deltaTime / 1000.0; // Converte deltaTime para segundos
     }
 
 }
