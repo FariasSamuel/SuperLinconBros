@@ -24,7 +24,7 @@ public class Coins extends AbstractCoins{
         this.setFramey(0);
         this.setFrameInterval(60);
         this.setFrameTimer(0);
-        String path = new File("src/Sprites/items.png").getAbsolutePath();
+        String path = new File("src/Sprites/coins.png").getAbsolutePath();
         this.setImage(path);
         System.out.println(path);
     }

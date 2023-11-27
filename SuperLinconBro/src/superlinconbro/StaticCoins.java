@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class StaticCoins extends AbstractCoins{
     private GameLoop game;
-    private String path = new File("src/Sprites/items.png").getAbsolutePath();
+    private String path = new File("src/Sprites/coins.png").getAbsolutePath();
     private Mario mario;
     
     
