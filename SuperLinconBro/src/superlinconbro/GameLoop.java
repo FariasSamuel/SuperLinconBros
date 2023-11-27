@@ -41,7 +41,7 @@ public class GameLoop extends  JPanel{
     private ArrayList<Tile> tiles;
     private BufferedImage imagemAlternativa;
     private BufferedImage imagemTiles;
-    
+    private ArrayList<Enemies> enemies = new ArrayList<>();
     private int CameraX;
     private int CameraY;
     private Coins coin;
@@ -240,6 +240,8 @@ public class GameLoop extends  JPanel{
        this.coin = new Coins(150,100);
        
        this.staticCoin = new StaticCoins(300, 340);
+       
+       enemies.add(new Goomba(800, 445, 40, 40, 1, this, 0.4));
     }
     
     @Override
@@ -253,6 +255,9 @@ public class GameLoop extends  JPanel{
         mario.paint(g);
         coin.draw(g);
         staticCoin.draw(g);
+        for(Enemies enemie: enemies){
+            enemie.draw(g);
+        }
     }
     
     public void gamelLogic(ArrayList<Integer>input){
@@ -262,6 +267,10 @@ public class GameLoop extends  JPanel{
         }
         mario.move(input,0);
         System.out.println(CameraX);
+        
+        for(Enemies enemie: enemies){
+            enemie.update(2,0,10,60);
+        }
     }
     
     public void restart(){

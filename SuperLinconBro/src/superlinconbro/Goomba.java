@@ -17,9 +17,8 @@ public class Goomba extends Enemies {
     private final int weight;
     private int originX;
     private int direction;
-    //private Mario mario;
 
-    public Goomba (int x, int y, int width, int height, int direction, GameLoop game, int range, Mario mario) throws IOException {
+    public Goomba (int x, int y, int width, int height, int direction, GameLoop game, double range) throws IOException {
         super();
         this.setX(x);
         this.setY(y);
@@ -46,7 +45,6 @@ public class Goomba extends Enemies {
         this.setFrameTimer(0);
         String path = new File("src/Sprites/goomba.png").getAbsolutePath();
         this.setImage(ImageIO.read(new File(path)));
-        //this.mario = new Mario(super.getGame());
         }
 
     @Override
@@ -101,10 +99,23 @@ public class Goomba extends Enemies {
     }
 
     @Override
-    public void draw(Graphics g){
-        super.draw(g);
-        Color brown = new Color(139, 69, 19);
-        g.setColor(brown);
-    }
+   public void draw(Graphics g) {
+    
+    int startX = this.getFramex()* (160 + 50);
+    int startY = this.getFramey() * 160;
+    int endX = (this.getFramex() + 1) * (160 + 50) - 50;
+    int endY = (this.getFramey() + 1) * 160;
+
+    g.drawImage(
+        this.getImage(),
+        this.getX(),
+        this.getY(),
+        this.getX() + this.getWidth(),
+        this.getY() + this.getHeight(),
+        startX, startY, endX, endY,
+        null
+    );
+}
+
 }
 

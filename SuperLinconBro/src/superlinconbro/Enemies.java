@@ -12,7 +12,7 @@ public abstract class Enemies {
     private int speed;
     private boolean marked;
     private double lastAttack;
-    private int range;
+    private double range;
     private int framex, framey;
     private int originY;
     private BufferedImage image;
@@ -63,19 +63,7 @@ public abstract class Enemies {
         }
     }
 
-    public void draw(Graphics g) {
-        g.drawImage(
-                this.image,
-                this.x,
-                this.y,
-                this.x + 64,
-                this.y + 64,
-                this.framex * 32,
-                this.framey * 16,
-                this.framex * 32 + 28,
-                this.framey * 16 + 16,
-                null);
-    }
+    public abstract void draw(Graphics g);
 
     public int getX() {
         return x;
@@ -109,7 +97,7 @@ public abstract class Enemies {
         return lastAttack;
     }
 
-    public int getRange() {
+    public double getRange() {
         return range;
     }
 
@@ -177,7 +165,7 @@ public abstract class Enemies {
         this.lastAttack = lastAttack;
     }
 
-    public void setRange(int range) {
+    public void setRange(double range) {
         this.range = range;
     }
 
