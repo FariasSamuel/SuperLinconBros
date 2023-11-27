@@ -44,7 +44,7 @@ public class StaticCoins extends AbstractCoins{
         }
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 16)); 
-        g.drawString("X" + counter, this.getXE() + 5,this.getYE());
+        g.drawString("X " + counter, this.getXE() + 32,this.getYE()+21);
         g.drawImage(this.getImage(), 
                  this.getXE(),
                  this.getYE(), 
