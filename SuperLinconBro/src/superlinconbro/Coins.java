@@ -14,8 +14,8 @@ import static java.lang.Math.sin;
 public class Coins extends AbstractCoins{
     private GameLoop game;
     private final int position[] = {0,28,60,88};
-    private double amplitude = -40.0; // Amplitude da função senoidal
-    private double frequency = 2.0; // Frequência da função senoidal
+    private final double amplitude = -40.0; // Amplitude da função senoidal
+    private final double frequency = 2.0; // Frequência da função senoidal
     private double time = 0.0; 
     
     
