@@ -1,13 +1,8 @@
 package superlinconbro;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
- * @author huber
+ * @author hubert
  */
 
 
@@ -16,17 +11,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import superlinconbro.GameLoop;
 
 public abstract class AbstractCoins {
     private int width;
     private int height;
     private int x;
     private int y;
-    private static final int speedy = 10;
     private static final int xE = 20;
     private static final int yE = 50;
-    private int fps;
     private int maxFrame;
     private int minFrame;
     private int framex;
@@ -36,25 +28,18 @@ public abstract class AbstractCoins {
     private double frameTimer;
     public static int counter;
     private BufferedImage image;
+    private boolean visible = true;
     
-     public void collison(){
-        //TODO
-    }
-    public void animation(){
-        if (this.frameTimer > this.frameInterval) {
-            this.frameTimer = 0;
-            if (this.framex < this.maxFrame - 1){
-                this.framex++;
-            }
-            else{
-                this.framex = 0;
-            }
-        } else {
-            this.frameTimer += this.deltaTime;
-        }
-    }
     public void draw(Graphics g){
         g.drawImage(image, x, y, width, height, null);
+    }
+    
+    public void incrementCounter(){
+        counter++;
+    }
+    
+    public void update(){
+        
     }
     
     public int getX() {
@@ -62,9 +47,6 @@ public abstract class AbstractCoins {
 }
     public int getY() {
         return y;
-    }
-    public int getSpeedy () {
-        return speedy;
     }
     public int getWidth() {
         return width;
@@ -77,9 +59,6 @@ public abstract class AbstractCoins {
     }
     public int getYE() {
         return yE;
-    }
-    public int getFps() {
-        return fps;
     }
     public int getMaxFrame() {
         return maxFrame;
@@ -105,6 +84,9 @@ public abstract class AbstractCoins {
     public BufferedImage getImage() {
         return image;
     }
+    public boolean isVisible(){
+        return visible;
+    }
     public void setX(int x) {
         this.x = x;
     }
@@ -116,9 +98,6 @@ public abstract class AbstractCoins {
     }
     public void setHeight(int height) {
         this.height = height;
-    }
-    public void setFps(int fps) {
-        this.fps = fps;
     }
     public void setMaxFrame(int maxFrame) {
         this.maxFrame = maxFrame;
@@ -144,8 +123,8 @@ public abstract class AbstractCoins {
     public void setImage(String path) throws IOException {
         this.image = ImageIO.read(new File(path));
     }
-    /*  g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 16)); 
-        g.drawString("X" + counter, xe + 5, ye);*/
+    public void setVisible(boolean visible){
+        this.visible = visible;
+    }
 }
 

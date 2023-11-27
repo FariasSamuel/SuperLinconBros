@@ -40,6 +40,7 @@ public class GameLoop extends  JPanel{
     private int CameraX;
     private int CameraY;
     private Coins coin;
+    private StaticCoins staticCoin;
     public GameLoop(int width) throws IOException{
        
        this.tiles = new ArrayList<Tile>();
@@ -78,6 +79,8 @@ public class GameLoop extends  JPanel{
        this.mario = new Mario(this);
        
        this.coin = new Coins(20,20);
+       
+       this.staticCoin = new StaticCoins(300, 300);
     }
     
     @Override
