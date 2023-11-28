@@ -27,6 +27,7 @@ public class MysteryBox {
     private final BufferedImage image;
     private GameLoop game;
     private final int position[] = {0,30,60};
+    private boolean visible = true;
     
     public MysteryBox(int x, int y) throws IOException{
         this.x = x;
@@ -42,18 +43,21 @@ public class MysteryBox {
         image =  ImageIO.read(new File(path));       
     }
     
-    public void update(){
+    public void update(Mario mario){
         animation(60);
+        collision(mario);
     }
     
     public void draw (Graphics g) {
-        g.drawImage(image,
+       if(visible){ g.drawImage(image,
                 x, y,
                 x + width, y + height,
                 position[framex], 0,
                 position[framex] + 16, 16,
                 game);
+        }
     }
+    
     public void animation(double deltaTime){
             if (frameTimer > frameInterval) {
                 frameTimer = 0;
@@ -64,6 +68,17 @@ public class MysteryBox {
             }
         } else {
             frameTimer += deltaTime;
+        }
+    }
+    
+    public void collision(Mario mario) {
+        if (mario.getX() + mario.getWidth() > x + 60 &&
+        mario.getX() < x + width - 60 &&
+        mario.getY() < y + height &&
+        mario.getY() + mario.getSpeedy() >= y &&
+        mario.currentState.getState() != States.DYING) { 
+        visible = false;
+        //this.incrementCounter();
         }
     }
 }

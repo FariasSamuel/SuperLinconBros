@@ -240,9 +240,9 @@ public class GameLoop extends  JPanel{
        
        this.coin = new Coins(150,100);
        
-       this.staticCoin = new StaticCoins(300, 340);
+       this.staticCoin = new StaticCoins(300, 356);
        
-       this.mysteryBox = new MysteryBox(500, 300);
+       this.mysteryBox = new MysteryBox(254, 356);
        
        enemies.add(new Goomba(800, 445, 40, 40, 1, this, 0.4));
     }
@@ -267,7 +267,7 @@ public class GameLoop extends  JPanel{
     public void gamelLogic(ArrayList<Integer>input){
         coin.update();
         staticCoin.update();
-        mysteryBox.update();
+        mysteryBox.update(mario);
         for (Tile tile : tiles) {
             tile.update(CameraX,CameraY);
         }

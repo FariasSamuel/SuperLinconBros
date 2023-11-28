@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class StaticCoins extends AbstractCoins{
     private GameLoop game;
-    private String path = new File("src/Sprites/coins.png").getAbsolutePath();
+    private final String path = new File("src/Sprites/coins.png").getAbsolutePath();
     private Mario mario;
     
     
