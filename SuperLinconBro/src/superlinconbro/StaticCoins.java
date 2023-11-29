@@ -13,10 +13,15 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class StaticCoins extends AbstractCoins{
+public class StaticCoins extends AbstractItems{
     private GameLoop game;
     private final String path = new File("src/Sprites/coins.png").getAbsolutePath();
     private Mario mario;
+    public static int counter;
+    
+    public void incrementCounter(){
+        counter++;
+    }
     
     
     public StaticCoins(int x, int y) throws IOException{

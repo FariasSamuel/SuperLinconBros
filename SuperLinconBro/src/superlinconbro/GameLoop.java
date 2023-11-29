@@ -267,7 +267,7 @@ public class GameLoop extends  JPanel{
     public void gamelLogic(ArrayList<Integer>input){
         coin.update();
         staticCoin.update();
-        mysteryBox.update(mario);
+        mysteryBox.update(mario, staticCoin);
         for (Tile tile : tiles) {
             tile.update(CameraX,CameraY);
         }

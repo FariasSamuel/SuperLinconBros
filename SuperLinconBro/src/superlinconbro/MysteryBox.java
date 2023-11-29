@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package superlinconbro;
 
 import java.awt.Graphics;
@@ -43,9 +39,9 @@ public class MysteryBox {
         image =  ImageIO.read(new File(path));       
     }
     
-    public void update(Mario mario){
+    public void update(Mario mario, StaticCoins staticCoin){
         animation(60);
-        collision(mario);
+        collision(mario, staticCoin);
     }
     
     public void draw (Graphics g) {
@@ -71,7 +67,7 @@ public class MysteryBox {
         }
     }
     
-    public void collision(Mario mario) {
+    public void collision(Mario mario, StaticCoins staticCoin) {
         if (mario.getX() + mario.getWidth() > x + 60 &&
         mario.getX() < x + width - 60 &&
         mario.getY() < y + height &&

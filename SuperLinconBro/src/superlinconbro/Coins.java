@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import static java.lang.Math.sin;
 
-public class Coins extends AbstractCoins{
+public class Coins extends AbstractItems{
     private GameLoop game;
     private final int position[] = {0,28,60,88};
     private final double amplitude = -40.0; // Amplitude da função senoidal

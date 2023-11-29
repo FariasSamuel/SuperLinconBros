@@ -5,6 +5,6 @@ package superlinconbro;
  *
  * @author hubert
  */
-public class Mushroom {
+public class Mushroom extends AbstractItems{
     
 }
