@@ -5,6 +5,10 @@ import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ *
+ * @author Mateus
+ */
 public abstract class Enemies {
     private int x, y;
     private int width, height;
@@ -27,28 +31,7 @@ public abstract class Enemies {
 
     public abstract void update(int speed, int speedy, int time, double deltaTime);
 
-    public void collision() {
-        if (this.mario.getX() + this.mario.getWidth() > this.getX() + 60 &&
-                this.mario.getX() + this.mario.getWidth() < this.getX() + 80 &&
-                this.mario.getY() + this.mario.getHeight() >= this.getY() &&
-                this.mario.getY() < this.getY() + this.getHeight() &&
-                this.mario.currentState.getState() != States.DYING) {
-            this.mario.setState(8, 0);
-        }
-        if (this.mario.getX() < this.x + this.width - 60 &&
-                this.mario.getX() > this.x + this.width - 80 &&
-                this.mario.getY() + this.mario.getHeight() >= this.y &&
-                this.mario.getY() < this.y + this.height &&
-                this.mario.currentState.getState() != States.DYING) {
-            this.mario.setState(8, 0);
-        }
-        if (this.mario.getX() + this.mario.getWidth() > this.x + 60 &&
-                this.mario.getX() < this.x + this.width - 60 &&
-                this.mario.getY() + this.mario.getHeight() + this.mario.getSpeedy() >= this.y &&
-                this.mario.getY() + this.mario.getHeight() + this.mario.getSpeedy() < this.y + this.height) {
-            this.isMarked(true);
-        }
-    }
+    public abstract void collision();
 
     public void animation(double deltaTime) {
         if (this.frameTimer > this.frameInterval) {
@@ -199,5 +182,9 @@ public abstract class Enemies {
 
     public void setFrameTimer(int frameTimer) {
         this.frameTimer = frameTimer;
+    }
+    
+    public Mario getMario(){
+        return this.mario;
     }
 }

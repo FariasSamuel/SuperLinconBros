@@ -9,7 +9,10 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ *
+ * @author Mateus
+ */
 public class Goomba extends Enemies {
     private int previousState;
     private int followingState;
@@ -91,14 +94,33 @@ public class Goomba extends Enemies {
     }
 
     public void collision(){
-        super.collision();
+        if (this.getMario().getX() + this.getMario().getWidth() > this.getX() + 60 &&
+                this.getMario().getX() + this.getMario().getWidth() < this.getX() + 80 &&
+                this.getMario().getY() + this.getMario().getHeight() >= this.getY() &&
+                this.getMario().getY() < this.getY() + this.getHeight() &&
+                this.getMario().currentState.getState() != States.DYING) {
+            this.getMario().setState(4, 0);
+        }
+        if (this.getMario().getX() < this.getX() + this.getWidth() - 60 &&
+                this.getMario().getX() > this.getX() + this.getWidth() - 80 &&
+                this.getMario().getY() + this.getMario().getHeight() >= this.getY() &&
+                this.getMario().getY() < this.getY() + this.getHeight() &&
+                this.getMario().currentState.getState() != States.DYING) {
+            this.getMario().setState(4, 0);
+        }
+        if (this.getMario().getX() + this.getMario().getWidth() > this.getX() + 60 &&
+                this.getMario().getX() < this.getX() + this.getWidth() - 60 &&
+                this.getMario().getY() + this.getMario().getHeight() + this.getMario().getSpeedy() >= this.getY() &&
+                this.getMario().getY() + this.getMario().getHeight() + this.getMario().getSpeedy() < this.getY() + this.getHeight()) {
+            this.isMarked(true);
+        }
     }
 
     public void animation(double deltaTime){
         super.animation(deltaTime);
     }
 
-    @Override
+   @Override
    public void draw(Graphics g) {
     
     int startX = this.getFramex()* (160 + 50);
