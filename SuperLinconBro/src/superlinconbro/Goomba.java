@@ -55,7 +55,7 @@ public class Goomba extends Enemies {
     @Override
     public void update(int speed, int speedy, int time, double deltaTime) {
         this.setX(this.getX() - speed + this.getSpeed());
-        this.setY(this.getY() - speedy - vy);
+        this.setY(this.getY() - speedy - this.vy);
 
         this.setOriginY(this.getOriginY() - speedy);
 
@@ -71,9 +71,9 @@ public class Goomba extends Enemies {
             if((time/1000) - this.getLastAttack() >=1){
                 this.setFramey(1);
                 if(this.previousState == - 1){
-                    this.setSpeed(-10*this.direction);
+                    this.setSpeed((-10)*this.direction);
                     this.followingState = 1;
-                    if(this.vy > this.getOriginY()){
+                    if(this.getY() > this.getOriginY()){
                         this.vy = -15;
                     }
                 }
@@ -129,21 +129,24 @@ public class Goomba extends Enemies {
 
    @Override
    public void draw(Graphics g) {
+       
     int startX = this.getFramex()* (160 + 50);
     int startY = this.getFramey() * 160;
     int endX = (this.getFramex() + 1) * (160 + 50) - 50;
     int endY = (this.getFramey() + 1) * 160;
 
-    g.drawImage(
-        this.getImage(),
-        this.getX(),
-        this.getY(),
-        this.getX() + this.getWidth(),
-        this.getY() + this.getHeight(),
-        startX, startY, endX, endY,
-        null
-    );
-}
+    if(!isMarked()){
+        g.drawImage(
+            this.getImage(),
+            this.getX(),
+            this.getY(),
+            this.getX() + this.getWidth(),
+            this.getY() + this.getHeight(),
+            startX, startY, endX, endY,
+            null
+        );
+    }
+   }
 
 }
 

@@ -56,23 +56,6 @@ public class Koopa extends Enemies {
 
 
     
-    @Override
-    public void draw(Graphics g){
-        int startX = this.getFramex()* (150 + 60);
-        int startY = this.getFramey() * 240;
-        int endX = (this.getFramex() + 1) * (150 + 60) - 60;
-        int endY = (this.getFramey() + 1) * 240;
-
-        g.drawImage(
-            this.getImage(),
-            this.getX(),
-            this.getY(),
-            this.getX() + this.getWidth(),
-            this.getY() + this.getHeight(),
-            startX, startY, endX, endY,
-            null
-        );
-    }
     
     @Override
     public void update(int speed, int speedy, int time, double deltaTime) {
@@ -140,5 +123,24 @@ public class Koopa extends Enemies {
     
     public void attack(int time, double deltaTime){
         
+    }
+    @Override
+    public void draw(Graphics g){
+        int startX = this.getFramex()* (150 + 60);
+        int startY = this.getFramey() * 240;
+        int endX = (this.getFramex() + 1) * (150 + 60) - 60;
+        int endY = (this.getFramey() + 1) * 240;
+
+        if(!isMarked()){
+        g.drawImage(
+            this.getImage(),
+            this.getX(),
+            this.getY(),
+            this.getX() + this.getWidth(),
+            this.getY() + this.getHeight(),
+            startX, startY, endX, endY,
+            null
+        );
+    }
     }
 }
