@@ -3,6 +3,7 @@ package superlinconbro;
 import superlinconbro.Enemies;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import superlinconbro.GameLoop;
 import superlinconbro.Mario;
@@ -18,14 +19,37 @@ import java.io.IOException;
  */
 public class Koopa extends Enemies {
 
-    private int lastShoot;
+    private int lastShell;
     
     private int speedy;
     
     private char lastKey;
+    
+    private ArrayList<Shell> shells = new ArrayList<>();
 
-    public Koopa() throws IOException {
+    public Koopa(int x, int y, int width, int height, GameLoop game) throws IOException {
+        this.setX(x);
+        this.setY(y);
+        this.setWidth(width);
+        this.setHeight(height);
+        this.setGame(game);
+        this.setSpeed(-5);
+        this.setMarked(false);
+        this.setLastAttack(0);
         
+        //lastshells
+        this.lastShell = 0;
+        //lastkeys
+        this.lastKey = 'E';
+        //shells arraylist
+        
+        this.setMaxFrame(2);
+        this.setFps(5);
+        this.setFrameInterval(1000/this.getFps());
+        this.setFrameTimer(0);
+        this.setFramex(0);
+        this.setFramey(0);
+        this.setOriginY(y);
         String path = new File("src/Sprites/Koopa.png").getAbsolutePath();
         this.setImage(ImageIO.read(new File(path)));
     }
@@ -34,7 +58,7 @@ public class Koopa extends Enemies {
     
     @Override
     public void draw(Graphics g){
-           int startX = this.getFramex()* (150 + 60);
+        int startX = this.getFramex()* (150 + 60);
         int startY = this.getFramey() * 240;
         int endX = (this.getFramex() + 1) * (150 + 60) - 60;
         int endY = (this.getFramey() + 1) * 240;

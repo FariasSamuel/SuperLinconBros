@@ -44,7 +44,7 @@ public class Goomba extends Enemies {
         this.setFramey(0);
         this.setMaxFrame(2);
         this.setFps(5);
-        this.setFrameInterval(1000/this.getFps());
+        this.setFrameInterval(1000/5);
         this.setFrameTimer(0);
         String path = new File("src/Sprites/goomba.png").getAbsolutePath();
         this.setImage(ImageIO.read(new File(path)));
@@ -94,24 +94,30 @@ public class Goomba extends Enemies {
     }
 
     public void collision(){
-        if (this.getMario().getX() + this.getMario().getWidth() > this.getX() + 60 &&
-                this.getMario().getX() + this.getMario().getWidth() < this.getX() + 80 &&
-                this.getMario().getY() + this.getMario().getHeight() >= this.getY() &&
-                this.getMario().getY() < this.getY() + this.getHeight() &&
-                this.getMario().currentState.getState() != States.DYING) {
+        //verificar se colidiu pela direita
+        if (this.getMario().getX() + this.getMario().getWidth() > this.getX() + 32 &&
+            this.getMario().getX() + this.getMario().getWidth() < this.getX() + 445 &&
+            this.getMario().getY() + this.getMario().getHeight() >= this.getY() &&
+            this.getMario().getY() < this.getY() + this.getHeight() &&
+            this.getMario().currentState.getState() != States.DYING) 
+        {
             this.getMario().setState(4, 0);
         }
-        if (this.getMario().getX() < this.getX() + this.getWidth() - 60 &&
-                this.getMario().getX() > this.getX() + this.getWidth() - 80 &&
-                this.getMario().getY() + this.getMario().getHeight() >= this.getY() &&
-                this.getMario().getY() < this.getY() + this.getHeight() &&
-                this.getMario().currentState.getState() != States.DYING) {
+        //verifica se colidiu pela esquerda
+        if (this.getMario().getX() < this.getX() + this.getWidth() - 32 &&
+            this.getMario().getX() > this.getX() + this.getWidth() - 445 &&
+            this.getMario().getY() + this.getMario().getHeight() >= this.getY() &&
+            this.getMario().getY() < this.getY() + this.getHeight() &&
+            this.getMario().currentState.getState() != States.DYING) 
+        {
             this.getMario().setState(4, 0);
         }
-        if (this.getMario().getX() + this.getMario().getWidth() > this.getX() + 60 &&
-                this.getMario().getX() < this.getX() + this.getWidth() - 60 &&
-                this.getMario().getY() + this.getMario().getHeight() + this.getMario().getSpeedy() >= this.getY() &&
-                this.getMario().getY() + this.getMario().getHeight() + this.getMario().getSpeedy() < this.getY() + this.getHeight()) {
+        //verifica se colidiu por cima
+        if (this.getMario().getX() + this.getMario().getWidth() > this.getX() + 32 &&
+            this.getMario().getX() < this.getX() + this.getWidth() - 32 &&
+            this.getMario().getY() + this.getMario().getHeight() + this.getMario().getSpeedy() >= this.getY() &&
+            this.getMario().getY() + this.getMario().getHeight() + this.getMario().getSpeedy() < this.getY() + this.getHeight()) 
+        {
             this.isMarked(true);
         }
     }
@@ -122,7 +128,6 @@ public class Goomba extends Enemies {
 
    @Override
    public void draw(Graphics g) {
-    
     int startX = this.getFramex()* (160 + 50);
     int startY = this.getFramey() * 160;
     int endX = (this.getFramex() + 1) * (160 + 50) - 50;

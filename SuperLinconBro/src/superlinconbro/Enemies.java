@@ -15,7 +15,7 @@ public abstract class Enemies {
     private GameLoop game;
     private int speed;
     private boolean marked;
-    private double lastAttack;
+    private int lastAttack;
     private double range;
     private int framex, framey;
     private int originY;
@@ -76,7 +76,7 @@ public abstract class Enemies {
         return marked;
     }
 
-    public double getLastAttack() {
+    public int getLastAttack() {
         return lastAttack;
     }
 
@@ -144,7 +144,7 @@ public abstract class Enemies {
         this.marked = marked;
     }
 
-    public void setLastAttack(double lastAttack) {
+    public void setLastAttack(int lastAttack) {
         this.lastAttack = lastAttack;
     }
 
