@@ -26,12 +26,13 @@ public class StaticCoins extends AbstractItems{
     }
     
     
-    public StaticCoins(int x, int y) throws IOException{
+    public StaticCoins(int x, int y, GameLoop game) throws IOException{
         this.setX(x);
         this.setY(y);
         this.setWidth(32);
         this.setHeight(32);
         this.setImage(path);
+        this.game = game;
         this.mario = new Mario(game);
     }
     
