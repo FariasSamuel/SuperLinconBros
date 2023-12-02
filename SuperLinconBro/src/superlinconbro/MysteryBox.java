@@ -24,11 +24,14 @@ public class MysteryBox {
     private GameLoop game;
     private final int position[] = {0,30,60};
     private boolean visible = true;
+    private Mario mario;
+    private Coins coin;
     
-    public MysteryBox(int x, int y) throws IOException{
+    public MysteryBox(int x, int y, GameLoop game, Coins coin) throws IOException{
         this.x = x;
         this.y = y;
         width = 32;
+        this.game = game;
         height = 32;
         maxFrame = 3;
         minFrame = 0;
@@ -36,12 +39,16 @@ public class MysteryBox {
         frameInterval = 60;
         frameTimer = 0;
         String path = new File("src/Sprites/mysterybox.png").getAbsolutePath();
-        image =  ImageIO.read(new File(path));       
+        image =  ImageIO.read(new File(path));   
+        this.coin = coin;
     }
     
-    public void update(Mario mario, StaticCoins staticCoin){
+    public void update() throws IOException{
         animation(60);
-        collision(mario, staticCoin);
+        collision();
+        if(visible==false){
+            this.coin.update();
+        }
     }
     
     public void draw (Graphics g) {
@@ -52,6 +59,9 @@ public class MysteryBox {
                 position[framex] + 16, 16,
                 game);
         }
+       else{
+           this.coin.draw(g);
+       }
     }
     
     public void animation(double deltaTime){
@@ -67,14 +77,18 @@ public class MysteryBox {
         }
     }
     
-    public void collision(Mario mario, StaticCoins staticCoin) {
-        if (mario.getX() + mario.getWidth() > x + 60 &&
-        mario.getX() < x + width - 60 &&
-        mario.getY() < y + height &&
-        mario.getY() + mario.getSpeedy() >= y &&
-        mario.currentState.getState() != States.DYING) { 
+    public void collision() throws IOException {
+        // Colisão por baixo
+        if (this.game.getMario().getX() + this.game.getMario().getWidth() > x &&
+        this.game.getMario().getX() < x + width &&
+        this.game.getMario().getY() < y + height &&
+        this.game.getMario().getY() >= y) {
         visible = false;
-        //this.incrementCounter();
-        }
+        this.coin.incrementCounter();
+        this.coin = new Coins(x, y);
+        
     }
 }
+}
+
+        
