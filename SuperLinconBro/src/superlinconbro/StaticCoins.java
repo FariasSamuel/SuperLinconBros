@@ -66,42 +66,41 @@ public class StaticCoins extends AbstractItems{
       // Colisão por cima
     if (this.game.getMario().getY() < this.getY() + this.getHeight() &&
         this.game.getMario().getY() + this.game.getMario().getSpeedy() >= this.getY() &&
-        this.mario.getX() + this.mario.getWidth() > this.getX() &&
-        this.mario.getX() < this.getX() + this.getWidth() &&
-        this.mario.currentState.getState() != States.DYING) {
+        this.game.getMario().getX() + this.game.getMario().getWidth() > this.getX() &&
+        this.game.getMario().getX() < this.getX() + this.getWidth() &&
+        this.game.getMario().currentState.getState() != States.DYING) {
         this.setVisible(false);
         this.incrementCounter();
     }
 
     // Colisão pela esquerda
-    if (this.mario.getX() < this.getX() + this.getWidth() &&
-        this.mario.getX() >= this.getX() &&
-        this.mario.getY() + this.mario.getHeight() > this.getY() &&
-        this.mario.getY() < this.getY() + this.getHeight() &&
-        this.mario.currentState.getState() != States.DYING) {
+    if (this.game.getMario().getX() < this.getX() + this.getWidth() &&
+        this.game.getMario().getX() >= this.getX() &&
+        this.game.getMario().getY() + this.game.getMario().getHeight() > this.getY() &&
+        this.game.getMario().getY() < this.getY() + this.getHeight()) {
         this.setVisible(false);
         this.incrementCounter();
     }
 
     // Colisão pela direita
-    if (this.mario.getX() + this.mario.getWidth() > this.getX() &&
-        this.mario.getX() < this.getX() + this.getWidth() &&
-        this.mario.getY() + this.mario.getHeight() > this.getY() &&
-        this.mario.getY() < this.getY() + this.getHeight() &&
-        this.mario.currentState.getState() != States.DYING) {
+    if (this.game.getMario().getX() + this.game.getMario().getWidth() > this.getX() &&
+        this.game.getMario().getX() < this.getX() + this.getWidth() &&
+        this.game.getMario().getY() + this.game.getMario().getHeight() > this.getY() &&
+        this.game.getMario().getY() < this.getY() + this.getHeight()) {
         this.setVisible(false);
         this.incrementCounter();
     }
 
     // Colisão por baixo
-    if (this.mario.getX() + this.mario.getWidth() > this.getX() &&
-        this.mario.getX() < this.getX() + this.getWidth() &&
-        this.mario.getY() < this.getY() + this.getHeight() &&
-        this.mario.getY() >= this.getY() &&
-        this.mario.currentState.getState() != States.DYING) {
+    if (this.game.getMario().getX() + this.game.getMario().getWidth() > this.getX() &&
+        this.game.getMario().getX() < this.getX() + this.getWidth() &&
+        this.game.getMario().getY() < this.getY() + this.getHeight() &&
+        this.game.getMario().getY() >= this.getY()) {
         this.setVisible(false);
         this.incrementCounter();
-}
+    }
+
+      
 
 
     }
