@@ -72,7 +72,7 @@ public abstract class Enemies {
         return speed;
     }
 
-    public boolean isMarked(boolean b) {
+    public boolean isMarked() {
         return marked;
     }
 

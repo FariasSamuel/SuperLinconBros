@@ -265,9 +265,12 @@ public class GameLoop extends  JPanel{
         coin.draw(g);
         staticCoin.draw(g);
         mysteryBox.draw(g);
-        for(Enemies enemie: enemies){
-            enemie.draw(g);
+        for(Enemies enemy: enemies){
+            if(!enemy.isMarked()){
+               enemy.draw(g);
+            }
         }
+        
     }
     
     public void gamelLogic(ArrayList<Integer>input){

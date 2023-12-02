@@ -129,7 +129,7 @@ public class Koopa extends Enemies {
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() + this.getGame().getMario().getSpeedy() >= this.getY() &&
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() + this.getGame().getMario().getSpeedy() < this.getY() + this.getHeight()) 
         {
-            this.isMarked(true);
+            this.setMarked(true);
         }
     }
     
