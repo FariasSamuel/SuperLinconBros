@@ -70,10 +70,10 @@ public class Goomba extends Enemies {
         }else{
             if((time/1000) - this.getLastAttack() >=1){
                 this.setFramey(1);
-                if(this.previousState == - 1){
+                if(this.previousState == -1){
                     this.setSpeed((-10)*this.direction);
                     this.followingState = 1;
-                    if(this.getY() > this.getOriginY()){
+                    if(this.getY() >= this.getOriginY()){
                         this.vy = -15;
                     }
                 }
