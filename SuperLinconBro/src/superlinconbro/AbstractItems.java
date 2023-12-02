@@ -17,8 +17,6 @@ public abstract class AbstractItems {
     private int height;
     private int x;
     private int y;
-    private static final int xE = 50;
-    private static final int yE = 50;
     private int maxFrame;
     private int minFrame;
     private int framex;
@@ -50,12 +48,6 @@ public abstract class AbstractItems {
     }
     public int getHeight() {
         return height;
-    }
-    public int getXE() {
-        return xE;
-    }
-    public int getYE() {
-        return yE;
     }
     public int getMaxFrame() {
         return maxFrame;
