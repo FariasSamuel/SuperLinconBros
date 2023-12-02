@@ -303,4 +303,8 @@ public class GameLoop extends  JPanel{
     public void setCameraY(int CameraY) {
         this.CameraY = CameraY;
     }
+    
+    public Mario getMario(){
+        return this.mario;
+    }
 }

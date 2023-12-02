@@ -20,6 +20,7 @@ public class Goomba extends Enemies {
     private final int weight;
     private int originX;
     private int direction;
+    private MarioState marioState;
 
     public Goomba (int x, int y, int width, int height, int direction, GameLoop game, double range) throws IOException {
         super();
@@ -95,28 +96,28 @@ public class Goomba extends Enemies {
 
     public void collision(){
         //verificar se colidiu pela direita
-        if (this.getMario().getX() + this.getMario().getWidth() > this.getX() + 32 &&
-            this.getMario().getX() + this.getMario().getWidth() < this.getX() + 445 &&
-            this.getMario().getY() + this.getMario().getHeight() >= this.getY() &&
-            this.getMario().getY() < this.getY() + this.getHeight() &&
-            this.getMario().currentState.getState() != States.DYING) 
+        if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 60 &&
+            this.getGame().getMario().getX() + this.getGame().getMario().getWidth() < this.getX() + 80 &&
+            this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
+            this.getGame().getMario().getY() < this.getY() + this.getHeight() &&
+            this.getGame().getMario().currentState.getState() != States.DYING) 
         {
-            this.getMario().setState(4, 0);
+            this.getGame().getMario().setState(4, 0);
         }
         //verifica se colidiu pela esquerda
-        if (this.getMario().getX() < this.getX() + this.getWidth() - 32 &&
-            this.getMario().getX() > this.getX() + this.getWidth() - 445 &&
-            this.getMario().getY() + this.getMario().getHeight() >= this.getY() &&
-            this.getMario().getY() < this.getY() + this.getHeight() &&
-            this.getMario().currentState.getState() != States.DYING) 
+        if (this.getGame().getMario().getX() < this.getX() + this.getWidth() - 60 &&
+            this.getGame().getMario().getX() > this.getX() + this.getWidth() - 80 &&
+            this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
+            this.getGame().getMario().getY() < this.getY() + this.getHeight() &&
+            this.getGame().getMario().currentState.getState() != States.DYING) 
         {
-            this.getMario().setState(4, 0);
+            this.getGame().getMario().setState(4, 0);
         }
         //verifica se colidiu por cima
-        if (this.getMario().getX() + this.getMario().getWidth() > this.getX() + 32 &&
-            this.getMario().getX() < this.getX() + this.getWidth() - 32 &&
-            this.getMario().getY() + this.getMario().getHeight() + this.getMario().getSpeedy() >= this.getY() &&
-            this.getMario().getY() + this.getMario().getHeight() + this.getMario().getSpeedy() < this.getY() + this.getHeight()) 
+        if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 60 &&
+            this.getGame().getMario().getX() < this.getX() + this.getWidth() - 60 &&
+            this.getGame().getMario().getY() + this.getGame().getMario().getHeight() + this.getGame().getMario().getSpeedy() >= this.getY() &&
+            this.getGame().getMario().getY() + this.getGame().getMario().getHeight() + this.getGame().getMario().getSpeedy() < this.getY() + this.getHeight()) 
         {
             this.isMarked(true);
         }
