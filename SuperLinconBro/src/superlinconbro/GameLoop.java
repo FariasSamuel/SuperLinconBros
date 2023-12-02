@@ -240,7 +240,7 @@ public class GameLoop extends  JPanel{
        
        this.coin = new Coins(150,100);
        
-       this.staticCoin = new StaticCoins(300, 356);
+       this.staticCoin = new StaticCoins(300, 356, this);
        
        this.mysteryBox = new MysteryBox(254, 356);
        
