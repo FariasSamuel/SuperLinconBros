@@ -242,7 +242,7 @@ public class GameLoop extends  JPanel{
        
        this.staticCoin = new StaticCoins(300, 356, this);
        
-       this.mysteryBox = new MysteryBox(254, 356);
+       this.mysteryBox = new MysteryBox(254, 356, this, coin);
        
        enemies.add(new Goomba(1350, 445, 40, 40, 1, this, 0.5));
        enemies.add(new Goomba(700, 445, 40, 40, -1, this, 0.5));
@@ -272,10 +272,10 @@ public class GameLoop extends  JPanel{
         
     }
     
-    public void gamelLogic(ArrayList<Integer>input){
+    public void gamelLogic(ArrayList<Integer>input) throws IOException{
         coin.update();
         staticCoin.update();
-        mysteryBox.update(mario, staticCoin);
+        mysteryBox.update();
         for (Tile tile : tiles) {
             tile.update(CameraX,CameraY);
         }

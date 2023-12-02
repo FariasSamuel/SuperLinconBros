@@ -24,6 +24,7 @@ public abstract class AbstractItems {
     private double deltaTime;
     private double frameInterval;
     private double frameTimer;
+    public static int counter;
     
     private BufferedImage image;
     private boolean visible = true;
@@ -114,6 +115,9 @@ public abstract class AbstractItems {
     }
     public void setVisible(boolean visible){
         this.visible = visible;
+    }
+    public void incrementCounter(){
+        counter++;
     }
 }
 

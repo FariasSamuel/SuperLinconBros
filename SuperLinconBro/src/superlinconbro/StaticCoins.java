@@ -1,4 +1,3 @@
-
 package superlinconbro;
 
 /**
@@ -17,14 +16,10 @@ public class StaticCoins extends AbstractItems{
     private GameLoop game;
     private final String path = new File("src/Sprites/coins.png").getAbsolutePath();
     private Mario mario;
-    public static int counter;
     private static final int xE = 50;
     private static final int yE = 50;
     
-    public void incrementCounter(){
-        counter++;
-    }
-    
+
     
     public StaticCoins(int x, int y, GameLoop game) throws IOException{
         this.setX(x);
@@ -52,7 +47,7 @@ public class StaticCoins extends AbstractItems{
         }
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 16)); 
-        g.drawString("X " + counter, xE + 32,yE+21);
+        g.drawString("X " + this.counter, xE + 32,yE+21);
         g.drawImage(this.getImage(), 
                  xE,
                  yE, 
