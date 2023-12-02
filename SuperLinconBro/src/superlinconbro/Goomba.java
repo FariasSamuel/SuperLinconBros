@@ -40,6 +40,7 @@ public class Goomba extends Enemies {
         this.weight = 1;
         this.setOriginY(y);
         this.originX = x;
+        this.direction = direction;
         this.setRange(range);
         this.setFramex(0);
         this.setFramey(0);
@@ -94,13 +95,13 @@ public class Goomba extends Enemies {
         this.collision();
     }
 
+    @Override
     public void collision(){
         //verificar se colidiu pela direita
         if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 60 &&
             this.getGame().getMario().getX() + this.getGame().getMario().getWidth() < this.getX() + 80 &&
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
-            this.getGame().getMario().getY() < this.getY() + this.getHeight() &&
-            this.getGame().getMario().currentState.getState() != States.DYING) 
+            this.getGame().getMario().getY() < this.getY() + this.getHeight()) 
         {
             this.getGame().getMario().setState(4, 0);
         }
@@ -108,8 +109,7 @@ public class Goomba extends Enemies {
         if (this.getGame().getMario().getX() < this.getX() + this.getWidth() - 60 &&
             this.getGame().getMario().getX() > this.getX() + this.getWidth() - 80 &&
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
-            this.getGame().getMario().getY() < this.getY() + this.getHeight() &&
-            this.getGame().getMario().currentState.getState() != States.DYING) 
+            this.getGame().getMario().getY() < this.getY() + this.getHeight())           
         {
             this.getGame().getMario().setState(4, 0);
         }

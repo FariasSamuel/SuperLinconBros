@@ -245,8 +245,9 @@ public class GameLoop extends  JPanel{
        this.mysteryBox = new MysteryBox(254, 356);
        
        enemies.add(new Goomba(1350, 445, 40, 40, 1, this, 0.5));
-       enemies.add(new Goomba(700, 445, 40, 40, 1, this, 0.5));
-       enemies.add(new Goomba(417+1280, 445, 40, 40, 1, this, 0.5));
+       enemies.add(new Goomba(700, 445, 40, 40, -1, this, 0.5));
+       enemies.add(new Goomba(2350, 445, 40, 40, 1, this, 0.5));
+       enemies.add(new Goomba(4000, 445, 40, 40, -1, this, 0.5));
        enemies.add(new Koopa(800, 445, 40, 40, this));
        enemies.add(new Koopa(600, 445, 40, 40, this));
 

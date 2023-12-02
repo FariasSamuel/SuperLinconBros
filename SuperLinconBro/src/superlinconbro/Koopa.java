@@ -105,6 +105,7 @@ public class Koopa extends Enemies {
         this.attack(time, deltaTime);
     }
     
+    @Override
     public void collision(){
         if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 30 &&
             this.getGame().getMario().getX() + this.getGame().getMario().getWidth() < this.getX() + 40 &&

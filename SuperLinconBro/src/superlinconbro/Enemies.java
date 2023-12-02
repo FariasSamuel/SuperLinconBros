@@ -91,6 +91,7 @@ public abstract class Enemies {
     public int getFramey() {
         return framey;
     }
+    
 
     public int getOriginY() {
         return originY;
@@ -187,4 +188,5 @@ public abstract class Enemies {
     public Mario getMario(){
         return this.mario;
     }
+    
 }
