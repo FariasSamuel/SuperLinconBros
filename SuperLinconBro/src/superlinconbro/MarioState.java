@@ -18,10 +18,10 @@ enum States  {
     SLIDING(2),
     JUMPING(3) ,
     DYING(4) ,
-    ATTACKING(5) ,
+    FALLING(5) ,
     SITTING(6) ,
     CLIMBING(7) ,
-    FALLING(8) ,
+    ATTACKING(8) ,
     BALL(9);
 
     public final int label;

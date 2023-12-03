@@ -31,7 +31,7 @@ public class Sliding extends MarioState{
         if(this.mario.speedx == 0){
             this.mario.setState(States.IDLE.label,0);
         }else if(input.contains(39)|| input.contains(37)){
-            System.out.println(this.mario.currentState);
+           // System.out.println(this.mario.currentState);
             this.mario.setState(States.RUNNING.label,1);
         }
     }

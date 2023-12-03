@@ -26,10 +26,10 @@ enum States  {
     SLIDING(2),
     JUMPING(3) ,
     DYING(4) ,
-    ATTACKING(5) ,
+    FALLING(5) ,
     SITTING(6) ,
     CLIMBING(7) ,
-    FALLING(8) ,
+    ATTACKING(8) ,
     BALL(9);
     
     public final int label;
@@ -77,11 +77,11 @@ public class Mario {
         this.width = 64;
         this.height = 64;
         this.x = 0;
-        this.y = 430;
+        this.y = 420;
 
         this.speedx = 0;
         this.speedy = 0;
-        this.weight = 1;
+        this.weight = 4;
         this.framex = 0;
         this.framey = 32;
         this.minFrame =0;
@@ -96,6 +96,7 @@ public class Mario {
         this.states.add(new Sliding(this));
         this.states.add(new Jumping(this));
         this.states.add(new DYING(this));
+        this.states.add(new Falling(this));
         this.currentState = this.states.get(0);
         this.currentState.enter();
         String path = new File("src/Sprites/metademario.png").getAbsolutePath();
@@ -129,33 +130,33 @@ public class Mario {
         
         this.game.tiles.forEach((tile) -> {
         if (
-          this.x + this.width > tile.getX()+20 &&
-          this.x + this.width < tile.getX() + 40 &&
-          this.y + this.height - 5 >= tile.getY() &&
+          this.x + this.width > tile.getX() +10 &&
+          this.x + this.width < tile.getX() + 30 &&
+          this.y + this.height -15 >= tile.getY() &&
           this.y < tile.getY() + tile.getHeight()){
-            this.x = tile.getX() - this.width + 20;
+            this.x = tile.getX() - this.width +10;
         }
         if (
-          this.x < tile.getX()+this.getWidth() - 20&&
-          this.x > tile.getX()+this.getWidth() -40 &&
-          this.y + this.height - 5>= tile.getY() &&
+          this.x < tile.getX()+this.getWidth()-10 &&
+          this.x > tile.getX()+this.getWidth()-30 &&
+          this.y + this.height - 15>= tile.getY() &&
           this.y < tile.getY() + tile.getHeight()
         )
-          this.x = tile.getX() + tile.getWidth() -20; 
+          this.x = tile.getX() + tile.getWidth() ; 
         
         
       });
         
-            if (input.contains(39)) {
-                this.speedx = 10;
-                this.lastkey = 39;
+        if (input.contains(39)) {
+            this.speedx = 10;
+            this.lastkey = 39;
 
-            } else if (input.contains(37)) {
-              this.speedx = -10;
-              this.lastkey = 37;
-            }else {
-                this.speedx=0;
-            }
+        } else if (input.contains(37)) {
+          this.speedx = -10;
+          this.lastkey = 37;
+        }else {
+            this.speedx=0;
+        }
        
         if(this.x < 0){
          this.x = 0;   
@@ -167,19 +168,20 @@ public class Mario {
         }else{
             this.game.setCameraX(0);
         }
-      int DistanceToGround = onGround();
-      if (DistanceToGround == 0) {
-        if (this.y + this.height >= 490) {
-          this.y = 490 - this.height;
-          
-        } else {
-          this.speedy += 2;
-        }
-      } else  {
-        this.speedy = 0;
-        this.y = DistanceToGround - this.height;
-      }
     
+        int DistanceToGround = onGround();
+        System.out.println("D:"+DistanceToGround + " Y:" + (this.y + this.height));
+     
+        if (DistanceToGround == 0) {
+            if (this.y + this.height > 480) {
+             this.y = 480 - this.height;
+            } else {
+              this.speedy += 2;
+            }
+          } else  {
+            this.speedy = 0;
+            this.y = DistanceToGround - this.height + 10;
+         }
         if(input.contains(65)){
             this.setState(States.DYING.label,1);
         }
@@ -236,18 +238,6 @@ public class Mario {
       (int)fye,
       null
     );
-    /*g.drawImage(
-      this.image,
-   this.x,
-      this.y,
-      this.x+this.width ,
-      this.y+this.height,
-      (int)(5.5f*32),
-      8,
-      (int)(5.5*32 + 32),
-      8+24,
-      null
-    );*/
     }else if(this.lastkey == 37){
     g.drawImage(
       this.image,
@@ -354,7 +344,7 @@ public class Mario {
           if (
             this.x + this.width > tile.getX()+ 20 &&
             this.x < tile.getX()+tile.getWidth() - 20 &&
-            this.y + this.height + this.speedy >= tile.getY() &&
+            this.y + this.height + this.speedy >= tile.getY() +10 &&
             this.y + this.height + this.speedy < tile.getY() + tile.getHeight()){
                distance = tile.getY();
             } 
