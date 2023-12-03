@@ -42,33 +42,28 @@ public class GameLoop extends  JPanel{
     private ArrayList<Tile> tilesNI;
     private BufferedImage imagemAlternativa;
     private BufferedImage imagemTiles;
-<<<<<<< HEAD
     private String playerName;
     
-=======
     private ArrayList<Enemies> enemies = new ArrayList<>();
->>>>>>> 25c5070511e939d8c6edb25632f0fa251c67e187
+
     private int CameraX;
     private int CameraY;
     private Coins coin;
     private StaticCoins staticCoin;
-<<<<<<< HEAD
-    
-    
-=======
+
     private MysteryBox mysteryBox;
->>>>>>> 25c5070511e939d8c6edb25632f0fa251c67e187
+
     public GameLoop(int width) throws IOException{
-    AskPlayer player = new AskPlayer();
-    player.askName();
-    this.playerName = player.getPlayerName();
-    System.out.println("o nome é" + playerName);
-       
-    this.tiles = new ArrayList<Tile>();
-    this.tilesNI = new ArrayList<Tile>();
-    this.width = width;
-       
-    BufferedImage imagemAlternativa = ImageIO.read(new File("src/Sprites/mapamario.png"));
+        
+        AskPlayer player = new AskPlayer();
+        player.askName();
+        this.playerName = player.getPlayerName();
+
+        this.tiles = new ArrayList<Tile>();
+        this.tilesNI = new ArrayList<Tile>();
+        this.width = width;
+
+        BufferedImage imagemAlternativa = ImageIO.read(new File("src/Sprites/mapamario.png"));
       
       //interrogações
       tiles.add(new Tile(256, 340,16 , 16, 384, 0, 400, 16));
@@ -119,21 +114,6 @@ public class GameLoop extends  JPanel{
        tiles.add(new Tile(4256, 340,16 , 16, 32, 0, 48, 16));
        tiles.add(new Tile(4320, 340,16 , 16, 32, 0, 48, 16));
        
-       //moitas
-       tilesNI.add(new Tile(193, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(240, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(736, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(1504, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(1536, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(2112, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(2496, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(2544, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(4192, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(0, 372,80, 48, 0, 160, 80, 208, imagemAlternativa));
-       tilesNI.add(new Tile(1212, 372,80, 48, 0, 160, 80, 208, imagemAlternativa));
-       tilesNI.add(new Tile(2336, 372,80, 48, 0, 160, 80, 208, imagemAlternativa));
-       tilesNI.add(new Tile(3520, 372,80, 48, 0, 160, 80, 208, imagemAlternativa));
-       tilesNI.add(new Tile(4960, 372,80, 48, 0, 160, 80, 208, imagemAlternativa));
        
        //canos
        tiles.add(new Tile(576, 404,32, 32, 0, 128, 32, 160));
@@ -146,6 +126,22 @@ public class GameLoop extends  JPanel{
        tiles.add(new Tile(860, 436,32, 16, 0, 144, 32, 160));
        tiles.add(new Tile(1180, 404,32, 16, 0, 144, 32, 160));
        tiles.add(new Tile(1180, 436,32, 16, 0, 144, 32, 160));
+       
+       //moitas
+       tilesNI.add(new Tile(193, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(240, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(736, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(1504, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(1536, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(2112, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(2496, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(2544, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(4192, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(0, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
+       tilesNI.add(new Tile(1212, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
+       tilesNI.add(new Tile(2336, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
+       tilesNI.add(new Tile(3520, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
+       tilesNI.add(new Tile(4960, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
        
        //nuvens
        tilesNI.add(new Tile(96, 128,32, 32, 0, 320, 48, 352));
