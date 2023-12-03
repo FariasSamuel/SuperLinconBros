@@ -41,12 +41,19 @@ public class GameLoop extends  JPanel{
     private ArrayList<Tile> tiles;
     private BufferedImage imagemAlternativa;
     private BufferedImage imagemTiles;
+    private String playerName;
     
     private int CameraX;
     private int CameraY;
     private Coins coin;
     private StaticCoins staticCoin;
+    
+    
     public GameLoop(int width) throws IOException{
+    AskPlayer player = new AskPlayer();
+    player.askName();
+    this.playerName = player.getPlayerName();
+    System.out.println("o nome é" + playerName);
        
     this.tiles = new ArrayList<Tile>();
     this.width = width;
