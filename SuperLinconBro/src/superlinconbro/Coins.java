@@ -14,7 +14,7 @@ import static java.lang.Math.sin;
 public class Coins extends AbstractItems{
     private GameLoop game;
     private final int position[] = {0,28,60,88};
-    private final double amplitude = -40.0; // Amplitude da função senoidal
+    private final double amplitude = -50.0; // Amplitude da função senoidal
     private final double frequency = 2.0; // Frequência da função senoidal
     private double time = 0.0; 
     
@@ -42,7 +42,7 @@ public class Coins extends AbstractItems{
     @Override
         
     public void draw(Graphics g) {
-        g.drawImage(this.getImage(),
+       if(this.isVisible()==true){ g.drawImage(this.getImage(),
                 this.getX(),
                 (int) (this.getY() + amplitude * sin(frequency * time)),
                 this.getX() + this.getWidth(),
@@ -52,6 +52,7 @@ public class Coins extends AbstractItems{
                 this.position[this.getFramex()] + 10,
                 16,
                 game);
+       }
     }
   
         public void animation(double deltaTime) {

@@ -10,6 +10,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -48,7 +50,11 @@ public class SuperLinconBro {
         Timer timer = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game.gamelLogic(input);
+                try {
+                    game.gamelLogic(input);
+                } catch (IOException ex) {
+                    Logger.getLogger(SuperLinconBro.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 game.repaint();
                 input.forEach((x)->System.out.print(x));
                 

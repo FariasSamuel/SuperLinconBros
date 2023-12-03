@@ -85,7 +85,7 @@ public class MysteryBox {
         this.game.getMario().getY() >= y) {
         visible = false;
         this.coin.incrementCounter();
-        this.coin = new Coins(x, y);
+        this.coin = new Coins(x, y-25);
         
     }
 }
