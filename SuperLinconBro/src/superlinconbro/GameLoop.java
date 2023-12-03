@@ -238,7 +238,7 @@ public class GameLoop extends  JPanel{
        
        this.mario = new Mario(this);
        
-       this.coin = new Coins(150,100);
+       this.coin = new Coins(150,100, this);
        
        this.staticCoin = new StaticCoins(300, 356, this);
        

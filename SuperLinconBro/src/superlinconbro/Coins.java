@@ -19,7 +19,7 @@ public class Coins extends AbstractItems{
     private double time = 0.0; 
     
     
-    public Coins (int x, int y) throws IOException {
+    public Coins (int x, int y, GameLoop game) throws IOException {
         this.setX(x);
         this.setY(y);
         this.setWidth(32);
@@ -31,18 +31,20 @@ public class Coins extends AbstractItems{
         this.setFrameTimer(0);
         String path = new File("src/Sprites/coins.png").getAbsolutePath();
         this.setImage(path);
+        this.game = game;
         System.out.println(path);
     }
     
     @Override
     public void update (){
         animation(60); 
+        collision();
     }
     
     @Override
         
     public void draw(Graphics g) {
-       if(this.isVisible()==true){ g.drawImage(this.getImage(),
+       if(this.isVisible()){ g.drawImage(this.getImage(),
                 this.getX(),
                 (int) (this.getY() + amplitude * sin(frequency * time)),
                 this.getX() + this.getWidth(),
@@ -106,5 +108,5 @@ public class Coins extends AbstractItems{
         this.setVisible(false);
         this.incrementCounter();
     }
-    }
+    }  
 }

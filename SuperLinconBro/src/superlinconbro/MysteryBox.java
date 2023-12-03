@@ -84,8 +84,7 @@ public class MysteryBox {
         this.game.getMario().getY() < y + height &&
         this.game.getMario().getY() >= y) {
         visible = false;
-        this.coin = new Coins(x, y-25);
-        
+        this.coin = new Coins(x, y-25, game);
     }
 }
 }
