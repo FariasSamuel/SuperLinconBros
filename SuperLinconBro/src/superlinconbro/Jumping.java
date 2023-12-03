@@ -19,7 +19,7 @@ public class Jumping extends MarioState{
 
     @Override
     public void enter() {
-        if(this.mario.onGround()) 
+        if(this.mario.onGround() != 0) 
             this.mario.speedy -= 30;
         this.mario.setFramex(5);
         this.mario.setFramey(0);
@@ -30,11 +30,18 @@ public class Jumping extends MarioState{
     @Override
     public void handleInput(ArrayList<Integer> input) {
         this.mario.speedy += this.mario.weight;
-        if(this.mario.onGround()){
+        
+        if(this.mario.onGround() != 0){
             this.mario.setState(States.IDLE.label, 1);
             this.mario.speedy = 0;
         }
-        
+        this.mario.game.tiles.forEach(tile->{
+            if((this.mario.getX() + this.mario.getWidth() > tile.getX() + 30 && this.mario.getX() < tile.getX() + tile.getWidth() - 30) && (this.mario.getY() + 10  < tile.getY() + tile.getHeight() && this.mario.getY() + this.mario.getHeight() >= tile.getY() - 10)){
+                //console.log("True")
+                this.mario.speedy = this.mario.weight;  
+                this.mario.setState(States.RUNNING.label,1);
+            }
+        });
     }
     
 }

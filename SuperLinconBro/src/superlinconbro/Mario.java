@@ -77,11 +77,11 @@ public class Mario {
         this.width = 64;
         this.height = 64;
         this.x = 0;
-        this.y = 470;
+        this.y = 430;
 
         this.speedx = 0;
         this.speedy = 0;
-        this.weight = 5;
+        this.weight = 1;
         this.framex = 0;
         this.framey = 32;
         this.minFrame =0;
@@ -127,34 +127,63 @@ public class Mario {
         this.x += this.speedx;
         this.y += this.speedy;
         
+        this.game.tiles.forEach((tile) -> {
+        if (
+          this.x + this.width > tile.getX()+20 &&
+          this.x + this.width < tile.getX() + 40 &&
+          this.y + this.height - 5 >= tile.getY() &&
+          this.y < tile.getY() + tile.getHeight()){
+            this.x = tile.getX() - this.width + 20;
+        }
+        if (
+          this.x < tile.getX()+this.getWidth() - 20&&
+          this.x > tile.getX()+this.getWidth() -40 &&
+          this.y + this.height - 5>= tile.getY() &&
+          this.y < tile.getY() + tile.getHeight()
+        )
+          this.x = tile.getX() + tile.getWidth() -20; 
+        
+        
+      });
+        
             if (input.contains(39)) {
                 this.speedx = 10;
                 this.lastkey = 39;
 
-            } else if (input.contains(37)&& (this.x > 0)) {
+            } else if (input.contains(37)) {
               this.speedx = -10;
               this.lastkey = 37;
             }else {
-                
-                //if(!input.contains(39) && !input.contains(39) ){
-                    if(speedx < 0)
-                      this.speedx += 2;
-                    if(speedx > 0)
-                      this.speedx += -2;
-                //}
+                this.speedx=0;
             }
        
+        if(this.x < 0){
+         this.x = 0;   
+        }
+            
         if (this.x > (this.game.width - this.width + 30) / 2) {
           this.x = (this.game.width - this.width + 30) / 2;
-          this.game.setCameraX(this.game.getCameraX()-5);
+          this.game.setCameraX(this.game.getCameraX()-1);
         }else{
             this.game.setCameraX(0);
         }
-        
+      int DistanceToGround = onGround();
+      if (DistanceToGround == 0) {
+        if (this.y + this.height >= 490) {
+          this.y = 490 - this.height;
+          
+        } else {
+          this.speedy += 2;
+        }
+      } else  {
+        this.speedy = 0;
+        this.y = DistanceToGround - this.height;
+      }
+    
         if(input.contains(65)){
             this.setState(States.DYING.label,1);
         }
-        
+      
         this.animation(60);
     }
     
@@ -194,6 +223,7 @@ public class Mario {
     }
     
     if(this.lastkey == 39){
+       
     g.drawImage(
       this.image,
    this.x,
@@ -318,9 +348,18 @@ public class Mario {
         }
     }
     
-    public boolean onGround(){
-        System.out.println(this.y + this.height);
+    public int onGround(){
+        int distance = 0;        
+        for(Tile tile: this.game.tiles){
+          if (
+            this.x + this.width > tile.getX()+ 20 &&
+            this.x < tile.getX()+tile.getWidth() - 20 &&
+            this.y + this.height + this.speedy >= tile.getY() &&
+            this.y + this.height + this.speedy < tile.getY() + tile.getHeight()){
+               distance = tile.getY();
+            } 
+        }
         
-        return (this.y + this.height>=470);
+        return distance;
     }
 }
