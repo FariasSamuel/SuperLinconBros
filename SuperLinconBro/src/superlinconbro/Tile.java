@@ -15,6 +15,38 @@ public class Tile {
     private int x;
     private int y;
     private int width;
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
     private int height;
     private int xi;
     private int yi;
@@ -29,8 +61,8 @@ public class Tile {
         this.yi = yi;
         this.xf = xf;
         this.yf = yf;
-        this.width = width;
-        this.height = height;
+        this.width = 2*width;
+        this.height = 2*height;
         String path = new File("src/Sprites/blocostile.png").getAbsolutePath();
         image = ImageIO.read(new File(path));
 
@@ -59,8 +91,8 @@ public class Tile {
             this.image, // Imagem a ser desenhada
             this.x,     // Posição x onde o tile será desenhado
             this.y,     // Posição y onde o tile será desenhado
-            this.x + this.width * 2,    // Posição x final do tile
-            this.y + this.height * 2,   // Posição y final do tile
+            this.x + this.width ,    // Posição x final do tile
+            this.y + this.height ,   // Posição y final do tile
             this.xi,    // Coordenada x inicial do recorte na imagem
             this.yi,    // Coordenada y inicial do recorte na imagem
             this.xf,    // Coordenada x final do recorte na imagem

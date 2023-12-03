@@ -12,13 +12,11 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public abstract class AbstractCoins {
+public abstract class AbstractItems {
     private int width;
     private int height;
     private int x;
     private int y;
-    private static final int xE = 50;
-    private static final int yE = 50;
     private int maxFrame;
     private int minFrame;
     private int framex;
@@ -27,6 +25,7 @@ public abstract class AbstractCoins {
     private double frameInterval;
     private double frameTimer;
     public static int counter;
+    
     private BufferedImage image;
     private boolean visible = true;
     
@@ -34,9 +33,6 @@ public abstract class AbstractCoins {
         g.drawImage(image, x, y, width, height, null);
     }
     
-    public void incrementCounter(){
-        counter++;
-    }
     
     public void update(){
         
@@ -53,12 +49,6 @@ public abstract class AbstractCoins {
     }
     public int getHeight() {
         return height;
-    }
-    public int getXE() {
-        return xE;
-    }
-    public int getYE() {
-        return yE;
     }
     public int getMaxFrame() {
         return maxFrame;
@@ -125,6 +115,9 @@ public abstract class AbstractCoins {
     }
     public void setVisible(boolean visible){
         this.visible = visible;
+    }
+    public void incrementCounter(){
+        counter++;
     }
 }
 

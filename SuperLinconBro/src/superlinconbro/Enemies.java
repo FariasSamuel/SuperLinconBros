@@ -5,14 +5,18 @@ import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ *
+ * @author Mateus
+ */
 public abstract class Enemies {
     private int x, y;
     private int width, height;
     private GameLoop game;
     private int speed;
     private boolean marked;
-    private double lastAttack;
-    private int range;
+    private int lastAttack;
+    private double range;
     private int framex, framey;
     private int originY;
     private BufferedImage image;
@@ -27,28 +31,7 @@ public abstract class Enemies {
 
     public abstract void update(int speed, int speedy, int time, double deltaTime);
 
-    public void collision() {
-        if (this.mario.getX() + this.mario.getWidth() > this.getX() + 60 &&
-                this.mario.getX() + this.mario.getWidth() < this.getX() + 80 &&
-                this.mario.getY() + this.mario.getHeight() >= this.getY() &&
-                this.mario.getY() < this.getY() + this.getHeight() &&
-                this.mario.currentState.getState() != States.DYING) {
-            this.mario.setState(8, 0);
-        }
-        if (this.mario.getX() < this.x + this.width - 60 &&
-                this.mario.getX() > this.x + this.width - 80 &&
-                this.mario.getY() + this.mario.getHeight() >= this.y &&
-                this.mario.getY() < this.y + this.height &&
-                this.mario.currentState.getState() != States.DYING) {
-            this.mario.setState(8, 0);
-        }
-        if (this.mario.getX() + this.mario.getWidth() > this.x + 60 &&
-                this.mario.getX() < this.x + this.width - 60 &&
-                this.mario.getY() + this.mario.getHeight() + this.mario.getSpeedy() >= this.y &&
-                this.mario.getY() + this.mario.getHeight() + this.mario.getSpeedy() < this.y + this.height) {
-            this.isMarked(true);
-        }
-    }
+    public abstract void collision();
 
     public void animation(double deltaTime) {
         if (this.frameTimer > this.frameInterval) {
@@ -63,19 +46,7 @@ public abstract class Enemies {
         }
     }
 
-    public void draw(Graphics g) {
-        g.drawImage(
-                this.image,
-                this.x,
-                this.y,
-                this.x + 64,
-                this.y + 64,
-                this.framex * 32,
-                this.framey * 16,
-                this.framex * 32 + 28,
-                this.framey * 16 + 16,
-                null);
-    }
+    public abstract void draw(Graphics g);
 
     public int getX() {
         return x;
@@ -101,15 +72,15 @@ public abstract class Enemies {
         return speed;
     }
 
-    public boolean isMarked(boolean b) {
+    public boolean isMarked() {
         return marked;
     }
 
-    public double getLastAttack() {
+    public int getLastAttack() {
         return lastAttack;
     }
 
-    public int getRange() {
+    public double getRange() {
         return range;
     }
 
@@ -120,6 +91,7 @@ public abstract class Enemies {
     public int getFramey() {
         return framey;
     }
+    
 
     public int getOriginY() {
         return originY;
@@ -173,11 +145,11 @@ public abstract class Enemies {
         this.marked = marked;
     }
 
-    public void setLastAttack(double lastAttack) {
+    public void setLastAttack(int lastAttack) {
         this.lastAttack = lastAttack;
     }
 
-    public void setRange(int range) {
+    public void setRange(double range) {
         this.range = range;
     }
 
@@ -212,4 +184,9 @@ public abstract class Enemies {
     public void setFrameTimer(int frameTimer) {
         this.frameTimer = frameTimer;
     }
+    
+    public Mario getMario(){
+        return this.mario;
+    }
+    
 }

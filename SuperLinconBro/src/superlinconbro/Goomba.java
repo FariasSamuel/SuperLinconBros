@@ -9,7 +9,10 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ *
+ * @author Mateus
+ */
 public class Goomba extends Enemies {
     private int previousState;
     private int followingState;
@@ -17,9 +20,9 @@ public class Goomba extends Enemies {
     private final int weight;
     private int originX;
     private int direction;
-    //private Mario mario;
+    private MarioState marioState;
 
-    public Goomba (int x, int y, int width, int height, int direction, GameLoop game, int range, Mario mario) throws IOException {
+    public Goomba (int x, int y, int width, int height, int direction, GameLoop game, double range) throws IOException {
         super();
         this.setX(x);
         this.setY(y);
@@ -37,22 +40,22 @@ public class Goomba extends Enemies {
         this.weight = 1;
         this.setOriginY(y);
         this.originX = x;
+        this.direction = direction;
         this.setRange(range);
         this.setFramex(0);
         this.setFramey(0);
         this.setMaxFrame(2);
         this.setFps(5);
-        this.setFrameInterval(1000/this.getFps());
+        this.setFrameInterval(1000/5);
         this.setFrameTimer(0);
         String path = new File("src/Sprites/goomba.png").getAbsolutePath();
         this.setImage(ImageIO.read(new File(path)));
-        //this.mario = new Mario(super.getGame());
         }
 
     @Override
     public void update(int speed, int speedy, int time, double deltaTime) {
         this.setX(this.getX() - speed + this.getSpeed());
-        this.setY(this.getY() - speedy - vy);
+        this.setY(this.getY() - speedy - this.vy);
 
         this.setOriginY(this.getOriginY() - speedy);
 
@@ -67,10 +70,10 @@ public class Goomba extends Enemies {
         }else{
             if((time/1000) - this.getLastAttack() >=1){
                 this.setFramey(1);
-                if(this.previousState == - 1){
-                    this.setSpeed(-10*this.direction);
+                if(this.previousState == -1){
+                    this.setSpeed((-10)*this.direction);
                     this.followingState = 1;
-                    if(this.vy > this.getOriginY()){
+                    if(this.getY() >= this.getOriginY()){
                         this.vy = -15;
                     }
                 }
@@ -92,19 +95,58 @@ public class Goomba extends Enemies {
         this.collision();
     }
 
+    @Override
     public void collision(){
-        super.collision();
+        //verificar se colidiu pela direita
+        if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 60 &&
+            this.getGame().getMario().getX() + this.getGame().getMario().getWidth() < this.getX() + 80 &&
+            this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
+            this.getGame().getMario().getY() < this.getY() + this.getHeight()) 
+        {
+            this.getGame().getMario().setState(4, 0);
+        }
+        //verifica se colidiu pela esquerda
+        if (this.getGame().getMario().getX() < this.getX() + this.getWidth() - 60 &&
+            this.getGame().getMario().getX() > this.getX() + this.getWidth() - 80 &&
+            this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
+            this.getGame().getMario().getY() < this.getY() + this.getHeight())           
+        {
+            this.getGame().getMario().setState(4, 0);
+        }
+        //verifica se colidiu por cima
+        if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 60 &&
+            this.getGame().getMario().getX() < this.getX() + this.getWidth() - 60 &&
+            this.getGame().getMario().getY() + this.getGame().getMario().getHeight() + this.getGame().getMario().getSpeedy() >= this.getY() &&
+            this.getGame().getMario().getY() + this.getGame().getMario().getHeight() + this.getGame().getMario().getSpeedy() < this.getY() + this.getHeight()) 
+        {
+            this.setMarked(true);
+        }
     }
 
     public void animation(double deltaTime){
         super.animation(deltaTime);
     }
 
-    @Override
-    public void draw(Graphics g){
-        super.draw(g);
-        Color brown = new Color(139, 69, 19);
-        g.setColor(brown);
+   @Override
+   public void draw(Graphics g) {
+       
+    int startX = this.getFramex()* (160 + 50);
+    int startY = this.getFramey() * 160;
+    int endX = (this.getFramex() + 1) * (160 + 50) - 50;
+    int endY = (this.getFramey() + 1) * 160;
+
+    if(!isMarked()){
+        g.drawImage(
+            this.getImage(),
+            this.getX(),
+            this.getY(),
+            this.getX() + this.getWidth(),
+            this.getY() + this.getHeight(),
+            startX, startY, endX, endY,
+            null
+        );
     }
+   }
+
 }
 

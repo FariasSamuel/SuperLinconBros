@@ -3,11 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/Sprites/mapamario.png</file>
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/superlinconbro/AskPlayer.java</file>
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/superlinconbro/GameLoop.java</file>
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/superlinconbro/MarioState.java</file>
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/superlinconbro/Tile.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/Mario.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/Shell.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/MarioState.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/Koopa.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/Goomba.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/Enemies.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/SuperLinconBro.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/GameLoop.java</file>
+=======
+            <file>file:/C:/Users/huber/Downloads/SuperLinconBros/SuperLinconBro/src/superlinconbro/AbstractItems.java</file>
+            <file>file:/C:/Users/huber/Downloads/SuperLinconBros/SuperLinconBro/src/superlinconbro/GameLoop.java</file>
+            <file>file:/C:/Users/huber/Downloads/SuperLinconBros/SuperLinconBro/src/superlinconbro/Goomba.java</file>
+            <file>file:/C:/Users/huber/Downloads/SuperLinconBros/SuperLinconBro/src/superlinconbro/Enemies.java</file>
+            <file>file:/C:/Users/huber/Downloads/SuperLinconBros/SuperLinconBro/src/superlinconbro/Mario.java</file>
+            <file>file:/C:/Users/huber/Downloads/SuperLinconBros/SuperLinconBro/src/superlinconbro/StaticCoins.java</file>
+            <file>file:/C:/Users/huber/Downloads/SuperLinconBros/SuperLinconBro/src/superlinconbro/Mushroom.java</file>
+            <file>file:/C:/Users/huber/Downloads/SuperLinconBros/SuperLinconBro/src/superlinconbro/MysteryBox.java</file>
+>>>>>>> 4b7d9e2eb7bf9a3cc92c637a5c8fb33917567e71
+>>>>>>> 25c5070511e939d8c6edb25632f0fa251c67e187
         </group>
     </open-files>
 </project-private>
