@@ -45,7 +45,7 @@ public class MysteryBox {
     
     public void update() throws IOException{
         animation(60);
-        collision();
+        if(visible) collision();
         if(visible==false){
             this.coin.update();
         }

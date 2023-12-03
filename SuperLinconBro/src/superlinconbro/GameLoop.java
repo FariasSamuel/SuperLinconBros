@@ -263,7 +263,7 @@ public class GameLoop extends  JPanel{
             tile.draw(g);
         }
         mario.paint(g);
-        coin.draw(g);
+        
         staticCoin.draw(g);
         mysteryBox.draw(g);
         for(Enemies enemy: enemies){          

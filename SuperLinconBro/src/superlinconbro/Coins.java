@@ -78,8 +78,8 @@ public class Coins extends AbstractItems{
         this.game.getMario().getX() + this.game.getMario().getWidth() > this.getX() &&
         this.game.getMario().getX() < this.getX() + this.getWidth() &&
         this.game.getMario().currentState.getState() != States.DYING) {
+        if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
-        this.incrementCounter();
     }
 
     // Colisão pela esquerda
@@ -87,8 +87,8 @@ public class Coins extends AbstractItems{
         this.game.getMario().getX() >= this.getX() &&
         this.game.getMario().getY() + this.game.getMario().getHeight() > this.getY() &&
         this.game.getMario().getY() < this.getY() + this.getHeight()) {
+        if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
-        this.incrementCounter();
     }
 
     // Colisão pela direita
@@ -96,8 +96,8 @@ public class Coins extends AbstractItems{
         this.game.getMario().getX() < this.getX() + this.getWidth() &&
         this.game.getMario().getY() + this.game.getMario().getHeight() > this.getY() &&
         this.game.getMario().getY() < this.getY() + this.getHeight()) {
+        if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
-        this.incrementCounter();
     }
 
     // Colisão por baixo
@@ -105,8 +105,8 @@ public class Coins extends AbstractItems{
         this.game.getMario().getX() < this.getX() + this.getWidth() &&
         this.game.getMario().getY() < this.getY() + this.getHeight() &&
         this.game.getMario().getY() >= this.getY()) {
+        if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
-        this.incrementCounter();
     }
     }  
 }
