@@ -24,12 +24,19 @@ public abstract class Enemies {
     private int fps;
     private int frameInterval, frameTimer;
     private Mario mario;
+    private long markedTime;
+    private boolean isVisible;
 
-    public Enemies() throws IOException {
+    public Enemies(int x, int y, int width, int height, GameLoop game) throws IOException {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.game = game;          
         this.mario = new Mario(game);
     }
 
-    public abstract void update(int speed, int speedy, int time, double deltaTime);
+    public abstract void update(int speedx, int speedy, int time, double deltaTime);
 
     public abstract void collision();
 
@@ -187,6 +194,22 @@ public abstract class Enemies {
     
     public Mario getMario(){
         return this.mario;
+    }
+    
+    public void setMarkedTime(long markedTime){
+        this.markedTime = markedTime;
+    }
+    
+    public long getMarkedTime(){
+        return this.markedTime;
+    }
+    
+    public boolean getVisible(){
+        return this.isVisible;
+    }
+    
+    public void setVisible(boolean visible){
+        this.isVisible = visible;
     }
     
 }

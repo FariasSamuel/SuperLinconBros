@@ -2,8 +2,6 @@ package superlinconbro;
 
 
 import superlinconbro.GameLoop;
-import superlinconbro.Mario;
-import superlinconbro.States;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
@@ -14,29 +12,19 @@ import java.io.IOException;
  * @author Mateus
  */
 public class Goomba extends Enemies {
-    private int previousState;
-    private int followingState;
     private int vy, vx;
     private final int weight;
     private int originX;
     private int direction;
-    private MarioState marioState;
 
     public Goomba (int x, int y, int width, int height, int direction, GameLoop game, double range) throws IOException {
-        super();
-        this.setX(x);
-        this.setY(y);
-        this.setWidth(width);
-        this.setHeight(height);
-        this.setGame(game);
+        super(x, y, width, height, game);
         this.setRange(range);
         this.setSpeed(0);
         this.setMarked(false);
         this.setLastAttack(0);
-        this.previousState = 0;
-        this.followingState = 1;
         this.vy = 0;
-        this.vx = -2;
+        this.vx = 2;
         this.weight = 1;
         this.setOriginY(y);
         this.originX = x;
@@ -50,47 +38,49 @@ public class Goomba extends Enemies {
         this.setFrameTimer(0);
         String path = new File("src/Sprites/goomba.png").getAbsolutePath();
         this.setImage(ImageIO.read(new File(path)));
+        this.setVisible(true);
         }
 
     @Override
-    public void update(int speed, int speedy, int time, double deltaTime) {
-        this.setX(this.getX() - speed + this.getSpeed());
-        this.setY(this.getY() - speedy - this.vy);
+    public void update(int speedx, int speedy, int time, double deltaTime) {
+        
+        
+        this.setX(this.getX() + (vx * this.direction) + this.getSpeed());
+        //this.setY(this.getY() - speedy - this.vy);
+        
+        this.setX(this.getX() + speedx);
+        this.setY(this.getY() + speedy);
 
         this.setOriginY(this.getOriginY() - speedy);
-
-        if(this.previousState == 0){
-            if((time/1000) - this.getLastAttack() >= this.getRange()){
-                this.setFramey(0);
-                this.setSpeed(0);
-                this.previousState = this.followingState;
-                this.followingState = 0;
-                this.setLastAttack(time/1000);
+        
+        this.getGame().tiles.forEach((tile) -> {
+         
+            int increasedLeftBound = tile.getX() + 5;
+            int increasedRightBound = tile.getX() + tile.getWidth() - 5;
+            
+            //colidiu no lado direito  
+            if (
+              this.getX() + this.getWidth() > tile.getX() + increasedLeftBound &&
+              this.getX() + this.getWidth() < tile.getX() + increasedRightBound &&
+              this.getY() + this.getHeight() -15 >= tile.getY() &&
+              this.getY() < tile.getY() + tile.getHeight())
+            {
+                this.direction = this.direction*-1;
             }
-        }else{
-            if((time/1000) - this.getLastAttack() >=1){
-                this.setFramey(1);
-                if(this.previousState == -1){
-                    this.setSpeed((-10)*this.direction);
-                    this.followingState = 1;
-                    if(this.getY() >= this.getOriginY()){
-                        this.vy = -15;
-                    }
-                }
-                if(this.previousState == 1){
-                  this.setSpeed(10*this.direction);
-                  this.followingState = -1;
-                }
-                this.previousState = 0;
-                this.setLastAttack(time/1000);
-            }else if(this.getY() >= this.getOriginY()){
-                this.vy = 0;
-                this.setY(this.getOriginY());
+            //colidiu no lado esquerdo  
+            else if (
+              this.getX() < increasedRightBound &&
+              this.getX() > increasedLeftBound &&
+              this.getY() + this.getHeight() - 15>= tile.getY() &&
+              this.getY() < tile.getY() + tile.getHeight()
+            )
+            {
+              this.direction = this.direction*-1;
             }
-        }
-        if(this.getY()<this.getOriginY()){
-            this.vy += this.weight;
-        }
+        
+      });
+        
+      
         this.animation(deltaTime);
         this.collision();
     }
@@ -98,29 +88,45 @@ public class Goomba extends Enemies {
     @Override
     public void collision(){
         //verificar se colidiu pela direita
-        if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 60 &&
-            this.getGame().getMario().getX() + this.getGame().getMario().getWidth() < this.getX() + 80 &&
+        if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 40 &&
+            this.getGame().getMario().getX() + this.getGame().getMario().getWidth() < this.getX() + 82 &&
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
             this.getGame().getMario().getY() < this.getY() + this.getHeight()) 
         {
+            if(!isMarked()){
             this.getGame().getMario().setState(4, 0);
+            }
         }
         //verifica se colidiu pela esquerda
-        if (this.getGame().getMario().getX() < this.getX() + this.getWidth() - 60 &&
-            this.getGame().getMario().getX() > this.getX() + this.getWidth() - 80 &&
+        if (this.getGame().getMario().getX() < this.getX() + this.getWidth() - 40 &&
+            this.getGame().getMario().getX() > this.getX() + this.getWidth() - 82 &&
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
             this.getGame().getMario().getY() < this.getY() + this.getHeight())           
         {
+            if(!isMarked()){
             this.getGame().getMario().setState(4, 0);
+            }
         }
-        //verifica se colidiu por cima
-        if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 60 &&
-            this.getGame().getMario().getX() < this.getX() + this.getWidth() - 60 &&
+        // Verifica se colidiu por cima
+        if (this.getGame().getMario().getX() + this.getGame().getMario().getWidth() > this.getX() + 40 &&
+            this.getGame().getMario().getX() < this.getX() + this.getWidth() - 0 &&
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() + this.getGame().getMario().getSpeedy() >= this.getY() &&
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() + this.getGame().getMario().getSpeedy() < this.getY() + this.getHeight()) 
         {
             this.setMarked(true);
+            this.setMarkedTime(System.currentTimeMillis());
+            
         }
+        
+        if (isMarked()) {
+        this.vx = 0;
+        long currentTime = System.currentTimeMillis();
+        long elapsedTime = currentTime - getMarkedTime();
+
+        if (elapsedTime >= 1000) {
+            this.setVisible(false);
+        }
+        }   
     }
 
     public void animation(double deltaTime){
@@ -129,13 +135,21 @@ public class Goomba extends Enemies {
 
    @Override
    public void draw(Graphics g) {
-       
-    int startX = this.getFramex()* (160 + 50);
-    int startY = this.getFramey() * 160;
-    int endX = (this.getFramex() + 1) * (160 + 50) - 50;
-    int endY = (this.getFramey() + 1) * 160;
+    
+    int startX, startY, endX, endY;
 
-    if(!isMarked()){
+    if (!isMarked()) {
+        startX = this.getFramex() * (160 + 50);
+        startY = this.getFramey() * 160;
+        endX = (this.getFramex() + 1) * (160 + 50) - 50;
+        endY = (this.getFramey() + 1) * 160;
+    } else {
+        startX = 420; 
+        startY = this.getFramey() * 160;
+        endX = 581;
+        endY = (this.getFramey() + 1) * 160;
+    }
+    if(this.getVisible()){
         g.drawImage(
             this.getImage(),
             this.getX(),
@@ -144,9 +158,24 @@ public class Goomba extends Enemies {
             this.getY() + this.getHeight(),
             startX, startY, endX, endY,
             null
-        );
+        );    
     }
    }
+   
+   public int onGround(){
+        int distance = 0;        
+        for(Tile tile: this.getGame().tiles){
+          if (
+            this.getX() + this.getWidth() > tile.getX()+ 20 &&
+            this.getX() < tile.getX()+tile.getWidth() - 20 &&
+            this.getY() + this.getHeight() + this.vy >= tile.getY() +10 &&
+            this.getY() + this.getHeight() + this.vy < tile.getY() + tile.getHeight()){
+               distance = tile.getY();
+            } 
+        }
+        
+        return distance;
+    }
 
 }
 

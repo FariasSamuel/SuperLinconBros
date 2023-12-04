@@ -58,10 +58,14 @@ public class Koopa extends Enemies {
     
     
     @Override
-    public void update(int speed, int speedy, int time, double deltaTime) {
+    public void update(int speedw, int speedx, int speedy, int time, double deltaTime) {
         this.setX(this.getX()-this.getSpeed());
         this.setY(this.getY()-this.speedy + this.getSpeed());
         this.setOriginY(this.getOriginY()-this.speedy);
+        
+        
+        this.setX(this.getX() + speedx);
+        this.setY(this.getY() + speedy);
         
         if(this.getOriginY() - this.getY() > 200){
             this.setSpeed(-5);
