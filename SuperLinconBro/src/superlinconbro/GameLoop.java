@@ -162,14 +162,14 @@ public class GameLoop extends  JPanel{
         q-=32;
        }     
        
-       p = 3872;
+       p = 3884;
        q = 436;
        for (int i=4; i>=0; i--){
            for (int j=1; j<=i; j++){
             tiles.add(new Tile(p, q,16, 16, 0, 16, 16, 32));
             p+= 32;
             }
-        p= 3872;
+        p= 3884;
         q-=32;
        } 
        
@@ -203,7 +203,7 @@ public class GameLoop extends  JPanel{
             }
        }
        for (j=468; j<=660; j+=32){
-            for (i=3390; i<=5600; i+=32){   
+            for (i=3384; i<=5600; i+=32){   
               tiles.add(new Tile(i, j,16, 16, 0, 0, 16, 16, imagemTiles));
             }
        }

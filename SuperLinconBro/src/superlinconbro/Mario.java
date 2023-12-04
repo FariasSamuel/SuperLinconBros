@@ -77,7 +77,7 @@ public class Mario {
         this.width = 64;
         this.height = 64;
         this.x = 0;
-        this.y = 420;
+        this.y = 452;
 
         this.speedx = 0;
         this.speedy = 0;
