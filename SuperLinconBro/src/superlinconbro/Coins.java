@@ -76,8 +76,7 @@ public class Coins extends AbstractItems{
     if (this.game.getMario().getY() < this.getY() + this.getHeight() &&
         this.game.getMario().getY() + this.game.getMario().getSpeedy() >= this.getY() &&
         this.game.getMario().getX() + this.game.getMario().getWidth() > this.getX() &&
-        this.game.getMario().getX() < this.getX() + this.getWidth() &&
-        this.game.getMario().currentState.getState() != States.DYING) {
+        this.game.getMario().getX() < this.getX() + this.getWidth()){
         if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
     }
@@ -109,4 +108,4 @@ public class Coins extends AbstractItems{
         this.setVisible(false);
     }
     }  
-}
+} 

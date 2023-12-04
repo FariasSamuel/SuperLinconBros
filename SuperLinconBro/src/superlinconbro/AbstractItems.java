@@ -24,7 +24,7 @@ public abstract class AbstractItems {
     private double deltaTime;
     private double frameInterval;
     private double frameTimer;
-    public static int counter;
+    private static int counter;
     
     private BufferedImage image;
     private boolean visible = true;
@@ -119,5 +119,7 @@ public abstract class AbstractItems {
     public void incrementCounter(){
         counter++;
     }
+    public int getCounter(){
+        return counter;
+    }
 }
-
