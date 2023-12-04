@@ -203,7 +203,7 @@ public class GameLoop extends  JPanel{
             }
        }
        for (j=468; j<=660; j+=32){
-            for (i=3384; i<=5600; i+=32){   
+            for (i=3392; i<=5600; i+=32){   
               tiles.add(new Tile(i, j,16, 16, 0, 0, 16, 16, imagemTiles));
             }
        }
