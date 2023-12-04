@@ -55,15 +55,17 @@ public class GameLoop extends  JPanel{
 
     public GameLoop(int width) throws IOException{
         
-        AskPlayer player = new AskPlayer();
-        player.askName();
-        this.playerName = player.getPlayerName();
+      AskPlayer player = new AskPlayer();
+      player.askName();
+      this.playerName = player.getPlayerName();
 
-        this.tiles = new ArrayList<Tile>();
-        this.tilesNI = new ArrayList<Tile>();
-        this.width = width;
+      this.tiles = new ArrayList<Tile>();
+      this.tilesNI = new ArrayList<Tile>();
+      this.width = width;
 
-        BufferedImage imagemAlternativa = ImageIO.read(new File("src/Sprites/mapamario.png"));
+      BufferedImage imagemAlternativa = ImageIO.read(new File("src/Sprites/mapamario.png"));
+      BufferedImage imagemTiles = ImageIO.read(new File("src/Sprites/blocostile.png"));
+      
       
       //interrogações
       tiles.add(new Tile(256, 340,16 , 16, 384, 0, 400, 16));
@@ -113,8 +115,7 @@ public class GameLoop extends  JPanel{
        tiles.add(new Tile(4224, 340,16 , 16, 32, 0, 48, 16));
        tiles.add(new Tile(4256, 340,16 , 16, 32, 0, 48, 16));
        tiles.add(new Tile(4320, 340,16 , 16, 32, 0, 48, 16));
-       
-       
+             
        //canos
        tiles.add(new Tile(576, 404,32, 32, 0, 128, 32, 160));
        tiles.add(new Tile(860, 372,32, 32, 0, 128, 32, 160));
@@ -125,40 +126,7 @@ public class GameLoop extends  JPanel{
        //partedebaixodeumcano
        tiles.add(new Tile(860, 436,32, 16, 0, 144, 32, 160));
        tiles.add(new Tile(1180, 404,32, 16, 0, 144, 32, 160));
-       tiles.add(new Tile(1180, 436,32, 16, 0, 144, 32, 160));
-       
-       //moitas
-       tilesNI.add(new Tile(193, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(240, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(736, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(1504, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(1536, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(2112, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(2496, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(2544, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(4192, 436,48, 16, 176, 144, 224, 160));
-       tilesNI.add(new Tile(0, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
-       tilesNI.add(new Tile(1212, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
-       tilesNI.add(new Tile(2336, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
-       tilesNI.add(new Tile(3520, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
-       tilesNI.add(new Tile(4960, 420,80, 48, 0, 160, 80, 208, imagemAlternativa));
-       
-       //nuvens
-       tilesNI.add(new Tile(96, 128,32, 32, 0, 320, 48, 352));
-       tilesNI.add(new Tile(384, 64,32, 32, 0, 320, 48, 352));
-       tilesNI.add(new Tile(576,128,80, 32, 432, 48, 512, 80, imagemAlternativa));
-       tilesNI.add(new Tile(796,64,64, 32, 576, 32, 640, 64, imagemAlternativa));
-       tilesNI.add(new Tile(1372, 64,32, 32, 0, 320, 48, 352));
-       tilesNI.add(new Tile(1500,128,80, 32, 432, 48, 512, 80, imagemAlternativa));
-       tilesNI.add(new Tile(1788,64,64, 32, 576, 32, 640, 64, imagemAlternativa));
-       tilesNI.add(new Tile(2460, 96,32, 32, 0, 320, 48, 352));
-       tilesNI.add(new Tile(2812, 64,32, 32, 0, 320, 48, 352));
-       tilesNI.add(new Tile(3068,96,80, 32, 432, 48, 512, 80, imagemAlternativa));
-       tilesNI.add(new Tile(3356,64,64, 32, 576, 32, 640, 64, imagemAlternativa));
-       tilesNI.add(new Tile(3996, 64,32, 32, 0, 320, 48, 352));
-       tilesNI.add(new Tile(4348, 32,32, 32, 0, 320, 48, 352));
-       tilesNI.add(new Tile(4604,64,80, 32, 432, 48, 512, 80, imagemAlternativa));
-       tilesNI.add(new Tile(4988, 96,32, 32, 0, 320, 48, 352));
+       tiles.add(new Tile(1180, 436,32, 16, 0, 144, 32, 160)); 
        
        //escadinhas
        int p = 3200;
@@ -214,8 +182,8 @@ public class GameLoop extends  JPanel{
             }
         p= 4608 + (32*i);
         q-=32;
-       }    
-      
+       }
+       
        //chão
        int i;
        int j; 
@@ -223,31 +191,61 @@ public class GameLoop extends  JPanel{
             for (i=0; i<=1372; i+=32){   
               tilesNI.add(new Tile(i, j,16, 16, 0, 0, 16, 16));
             }
-        } 
+       } 
        for (j=468; j<=660; j+=32){
             for (i=1436; i<=1952; i+=32){   
               tilesNI.add(new Tile(i, j,16, 16, 0, 0, 16, 16));
             }
        }
-       
        for (j=468; j<=660; j+=32){
             for (i=2080; i<=3320; i+=32){   
               tilesNI.add(new Tile(i, j,16, 16, 0, 0, 16, 16));
             }
        }
-       
-       BufferedImage imagemTiles = ImageIO.read(new File("src/Sprites/blocostile.png"));
        for (j=468; j<=660; j+=32){
-            for (i=3384; i<=5600; i+=32){   
+            for (i=3390; i<=5600; i+=32){   
               tiles.add(new Tile(i, j,16, 16, 0, 0, 16, 16, imagemTiles));
             }
        }
        
        //castelo
-       tiles.add(new Tile(5280, 308,80, 80, 3232,128, 3312, 208, imagemAlternativa));  
+       tiles.add(new Tile(5280, 308,80, 80, 3232,128, 3312, 208, imagemAlternativa));     
        
        //Bandeira
-       tiles.add(new Tile(5120, 116,32, 176, 3152,32,3184, 208, imagemAlternativa));
+       tiles.add(new Tile(5120, 116,32, 176, 3152,32,3184, 208, imagemAlternativa));    
+       
+       //moitas
+       tilesNI.add(new Tile(193, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(240, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(736, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(1504, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(1536, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(2112, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(2496, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(2544, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(4192, 436,48, 16, 176, 144, 224, 160));
+       tilesNI.add(new Tile(0, 372,80, 48, 0, 160, 80, 208, imagemAlternativa));
+       tilesNI.add(new Tile(1212, 372,80, 48, 0, 160, 80, 208, imagemAlternativa));
+       tilesNI.add(new Tile(2336, 372,80, 48, 0, 160, 80, 208, imagemAlternativa));
+       tilesNI.add(new Tile(3520, 372,80, 48, 0, 160, 80, 208, imagemAlternativa));
+       tilesNI.add(new Tile(4960, 372,80, 48, 0, 160, 80, 208, imagemAlternativa)); 
+       
+       //nuvens
+       tilesNI.add(new Tile(96, 128,32, 32, 0, 320, 48, 352));
+       tilesNI.add(new Tile(384, 64,32, 32, 0, 320, 48, 352));
+       tilesNI.add(new Tile(576,128,80, 32, 432, 48, 512, 80, imagemAlternativa));
+       tilesNI.add(new Tile(796,64,64, 32, 576, 32, 640, 64, imagemAlternativa));
+       tilesNI.add(new Tile(1372, 64,32, 32, 0, 320, 48, 352));
+       tilesNI.add(new Tile(1500,128,80, 32, 432, 48, 512, 80, imagemAlternativa));
+       tilesNI.add(new Tile(1788,64,64, 32, 576, 32, 640, 64, imagemAlternativa));
+       tilesNI.add(new Tile(2460, 96,32, 32, 0, 320, 48, 352));
+       tilesNI.add(new Tile(2812, 64,32, 32, 0, 320, 48, 352));
+       tilesNI.add(new Tile(3068,96,80, 32, 432, 48, 512, 80, imagemAlternativa));
+       tilesNI.add(new Tile(3356,64,64, 32, 576, 32, 640, 64, imagemAlternativa));
+       tilesNI.add(new Tile(3996, 64,32, 32, 0, 320, 48, 352));
+       tilesNI.add(new Tile(4348, 32,32, 32, 0, 320, 48, 352));
+       tilesNI.add(new Tile(4604,64,80, 32, 432, 48, 512, 80, imagemAlternativa));
+       tilesNI.add(new Tile(4988, 96,32, 32, 0, 320, 48, 352));
        
        this.mario = new Mario(this);
        
@@ -272,12 +270,14 @@ public class GameLoop extends  JPanel{
         g.setColor(new Color(93,148,251));
         g.fillRect(0, 0, 4000, 2000);
         g.setColor(Color.black);
-        for (Tile tile : tiles) {
-            tile.draw(g);
-        }
+        
         for (Tile tile : tilesNI) {
             tile.draw(g);
         }
+        for (Tile tile : tiles) {
+            tile.draw(g);
+        }
+        
         mario.paint(g);
         //coin.draw(g);
         //staticCoin.draw(g);
@@ -292,10 +292,11 @@ public class GameLoop extends  JPanel{
         //coin.update();
         //staticCoin.update();
         //mysteryBox.update();
-        for (Tile tile : tiles) {
+        
+        for (Tile tile : tilesNI) {
             tile.update(CameraX,CameraY);
         }
-        for (Tile tile : tilesNI) {
+        for (Tile tile : tiles) {
             tile.update(CameraX,CameraY);
         }
         mario.move(input,0);
