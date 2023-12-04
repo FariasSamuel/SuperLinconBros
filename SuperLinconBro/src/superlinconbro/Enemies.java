@@ -52,6 +52,7 @@ public abstract class Enemies {
             this.frameTimer += deltaTime;
         }
     }
+    
 
     public abstract void draw(Graphics g);
 

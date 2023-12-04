@@ -14,7 +14,6 @@ import java.io.IOException;
 public class Goomba extends Enemies {
     private int vy, vx;
     private final int weight;
-    private int originX;
     private int direction;
 
     public Goomba (int x, int y, int width, int height, int direction, GameLoop game, double range) throws IOException {
@@ -24,10 +23,9 @@ public class Goomba extends Enemies {
         this.setMarked(false);
         this.setLastAttack(0);
         this.vy = 0;
-        this.vx = 2;
+        this.vx = 4;
         this.weight = 1;
         this.setOriginY(y);
-        this.originX = x;
         this.direction = direction;
         this.setRange(range);
         this.setFramex(0);
@@ -39,7 +37,7 @@ public class Goomba extends Enemies {
         String path = new File("src/Sprites/goomba.png").getAbsolutePath();
         this.setImage(ImageIO.read(new File(path)));
         this.setVisible(true);
-        }
+    }
 
     @Override
     public void update(int speedx, int speedy, int time, double deltaTime) {
@@ -80,7 +78,23 @@ public class Goomba extends Enemies {
         
       });
         
-      
+        int distanceToGround = onGround();
+        if(distanceToGround > 0){
+            this.vy = -10;
+            this.vx = 0;
+            this.setY(this.getY() - speedy - this.vy);
+        }
+        
+        //if ((this.getX() > 1374 && this.getX() < 1436) || 
+        //    (this.getX() > 1952 && this.getX() < 2080) ||
+        //    (this.getX() > 3318 && this.getX() < 3390)) {
+        //        this.vy = -10;
+        //        this.vx = 0;
+        //        this.setY(this.getY() - speedy - this.vy);
+        //}
+
+        
+        
         this.animation(deltaTime);
         this.collision();
     }
@@ -93,7 +107,7 @@ public class Goomba extends Enemies {
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
             this.getGame().getMario().getY() < this.getY() + this.getHeight()) 
         {
-            if(!isMarked()){
+            if(!this.isMarked()){
             this.getGame().getMario().setState(4, 0);
             }
         }
@@ -103,7 +117,7 @@ public class Goomba extends Enemies {
             this.getGame().getMario().getY() + this.getGame().getMario().getHeight() >= this.getY() &&
             this.getGame().getMario().getY() < this.getY() + this.getHeight())           
         {
-            if(!isMarked()){
+            if(!this.isMarked()){
             this.getGame().getMario().setState(4, 0);
             }
         }
@@ -118,7 +132,7 @@ public class Goomba extends Enemies {
             
         }
         
-        if (isMarked()) {
+        if (this.isMarked()) {
         this.vx = 0;
         long currentTime = System.currentTimeMillis();
         long elapsedTime = currentTime - getMarkedTime();
