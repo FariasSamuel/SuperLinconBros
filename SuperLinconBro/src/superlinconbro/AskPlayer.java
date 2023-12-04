@@ -20,12 +20,17 @@ public class AskPlayer {
         while (true) {
             String input = JOptionPane.showInputDialog(frame, "Bem-vindo(a) ao Super Lincon Bros World!! "
                     + "Qual é o seu nome?");
-            if (input != null && !input.trim().isEmpty()) {
+            
+            if (input == null) { 
+                JOptionPane.showMessageDialog(frame, "Poxa, o jogo foi cancelado.");
+                return; // Interrompe o método askName() se "Cancelar" foi pressionado
+            } 
+            
+            if (!input.trim().isEmpty()) {
                 this.playerName = input;
                 JOptionPane.showMessageDialog(frame, "Prepara-se, " + playerName + "! O jogo já vai começar.");
                 break;
-            } 
-            else {
+            } else {
                 JOptionPane.showMessageDialog(frame, "Por favor, digite um nome válido para começar.");
             }
         }

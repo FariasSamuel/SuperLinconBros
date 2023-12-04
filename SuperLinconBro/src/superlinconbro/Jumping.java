@@ -19,8 +19,18 @@ public class Jumping extends MarioState{
 
     @Override
     public void enter() {
-        if(this.mario.onGround() != 0) 
+        if(this.mario.onGround() != 0){
             this.mario.speedy -= 40;
+            for(Tile tile: this.mario.game.tiles) {
+                if (
+                  (this.mario.getX() + this.mario.getWidth()- 15 > tile.getX() &&
+                  this.mario.getX() +15< tile.getX()+ tile.getWidth()  &&
+                  this.mario.getY() + this.mario.getHeight()-15 > tile.getY() &&
+                  this.mario.getY() + this.mario.speedy < tile.getY() + tile.getHeight())){
+                    this.mario.speedy -=  tile.getY() + tile.getHeight() - this.mario.getY();
+                }
+            }
+        }
         this.mario.setFramex(5);
         this.mario.setFramey(0);
         this.mario.setMaxFrame(1);

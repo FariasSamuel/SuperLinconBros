@@ -1,3 +1,4 @@
+
 package superlinconbro;
 
 /**
@@ -31,9 +32,10 @@ public class StaticCoins extends AbstractItems{
         this.mario = new Mario(game);
     }
     
-    @Override
-    public void update(){
+    public void update(int cameraX, int cameraY){
         collision();
+        this.setX(this.getX()+ cameraX);
+        this.setY(this.getY()+ cameraY);
     }
     @Override
     public void draw(Graphics g){
@@ -47,7 +49,7 @@ public class StaticCoins extends AbstractItems{
         }
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 16)); 
-        g.drawString("X " + this.counter, xE + 32,yE+21);
+        g.drawString("X " + this.getCounter(), xE + 32,yE+21);
         g.drawImage(this.getImage(), 
                  xE,
                  yE, 
@@ -62,10 +64,9 @@ public class StaticCoins extends AbstractItems{
     if (this.game.getMario().getY() < this.getY() + this.getHeight() &&
         this.game.getMario().getY() + this.game.getMario().getSpeedy() >= this.getY() &&
         this.game.getMario().getX() + this.game.getMario().getWidth() > this.getX() &&
-        this.game.getMario().getX() < this.getX() + this.getWidth() &&
-        this.game.getMario().currentState.getState() != States.DYING) {
+        this.game.getMario().getX() < this.getX() + this.getWidth()){
+        if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
-        this.incrementCounter();
     }
 
     // Colisão pela esquerda
@@ -73,17 +74,17 @@ public class StaticCoins extends AbstractItems{
         this.game.getMario().getX() >= this.getX() &&
         this.game.getMario().getY() + this.game.getMario().getHeight() > this.getY() &&
         this.game.getMario().getY() < this.getY() + this.getHeight()) {
+        if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
-        this.incrementCounter();
     }
 
     // Colisão pela direita
     if (this.game.getMario().getX() + this.game.getMario().getWidth() > this.getX() &&
-        this.game.getMario().getX() < this.getX() + this.getWidth() &&
+        this.game.getMario().getX() < this.getX() + this.getWidth()&&
         this.game.getMario().getY() + this.game.getMario().getHeight() > this.getY() &&
         this.game.getMario().getY() < this.getY() + this.getHeight()) {
+        if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
-        this.incrementCounter();
     }
 
     // Colisão por baixo
@@ -91,13 +92,9 @@ public class StaticCoins extends AbstractItems{
         this.game.getMario().getX() < this.getX() + this.getWidth() &&
         this.game.getMario().getY() < this.getY() + this.getHeight() &&
         this.game.getMario().getY() >= this.getY()) {
+        if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
-        this.incrementCounter();
     }
-
-      
-
-
     }
     
 }

@@ -49,9 +49,9 @@ public class GameLoop extends  JPanel{
     private int CameraX;
     private int CameraY;
     private Coins coin;
-    private StaticCoins staticCoin;
-
-    private MysteryBox mysteryBox;
+    
+    private ArrayList <StaticCoins> staticCoins = new ArrayList<>();
+    private ArrayList <MysteryBox> mysteryBoxes = new ArrayList<>();
 
     public GameLoop(int width) throws IOException{
         
@@ -85,7 +85,10 @@ public class GameLoop extends  JPanel{
       tiles.add(new Tile(4288, 340,16 , 16, 384, 0, 400, 16));
        
        //tijolos
-       tiles.add(new Tile(0,480,960,20,0,0,0,0));
+       tiles.add(new Tile(0,480,1372,20,0,0,0,0));
+       tiles.add(new Tile(1436,480,516,20,0,0,0,0));
+       tiles.add(new Tile(2080 ,480 ,1372,20,0,0,0,0));
+       tiles.add(new Tile(3390 ,480,2210,20,0,0,0,0));
        tiles.add(new Tile(384, 340,16 , 16, 32, 0, 48, 16));
        tiles.add(new Tile(448, 340,16 , 16, 32, 0, 48, 16));
        tiles.add(new Tile(1664, 340,16 , 16, 32, 0, 48, 16));
@@ -162,14 +165,14 @@ public class GameLoop extends  JPanel{
         q-=32;
        }     
        
-       p = 3872;
+       p = 3884;
        q = 436;
        for (int i=4; i>=0; i--){
            for (int j=1; j<=i; j++){
             tiles.add(new Tile(p, q,16, 16, 0, 16, 16, 32));
             p+= 32;
             }
-        p= 3872;
+        p= 3884;
         q-=32;
        } 
        
@@ -203,7 +206,7 @@ public class GameLoop extends  JPanel{
             }
        }
        for (j=468; j<=660; j+=32){
-            for (i=3390; i<=5600; i+=32){   
+            for (i=3392; i<=5600; i+=32){   
               tiles.add(new Tile(i, j,16, 16, 0, 0, 16, 16, imagemTiles));
             }
        }
@@ -249,18 +252,60 @@ public class GameLoop extends  JPanel{
        
        this.mario = new Mario(this);
        
-       //this.coin = new Coins(150,100);
+       //Moedas estaticas
+       staticCoins.add(new StaticCoins (304, 356, this));
+       staticCoins.add(new StaticCoins (518, 356, this));
+       staticCoins.add(new StaticCoins (380, 260, this));
+       staticCoins.add(new StaticCoins (452, 260, this));
+       staticCoins.add(new StaticCoins (380, 260, this));
+       staticCoins.add(new StaticCoins (1630, 356, this));
+       staticCoins.add(new StaticCoins (1764, 356, this));
+       staticCoins.add(new StaticCoins (1742, 170, this));
+       staticCoins.add(new StaticCoins (1782, 170, this));
+       staticCoins.add(new StaticCoins (1822, 170, this));
+       staticCoins.add(new StaticCoins (1862, 170, this));
+       staticCoins.add(new StaticCoins (1900, 220, this));
+       staticCoins.add(new StaticCoins (1940, 220, this));
+       staticCoins.add(new StaticCoins (1980, 220, this));
+       staticCoins.add(new StaticCoins (2020, 220,this));
+       staticCoins.add(new StaticCoins (2560, 200, this));
+       staticCoins.add(new StaticCoins (2420, 356, this));
+       staticCoins.add(new StaticCoins (2515, 356, this));
+       staticCoins.add(new StaticCoins (2610, 356, this));
+       staticCoins.add(new StaticCoins (2860, 356, this));
+       staticCoins.add(new StaticCoins (2900, 356, this));
+       staticCoins.add(new StaticCoins (2938, 356, this));
+       staticCoins.add(new StaticCoins (2978, 356, this));
+       staticCoins.add(new StaticCoins (3018, 356, this));
+       staticCoins.add(new StaticCoins (4178, 356, this));
+       staticCoins.add(new StaticCoins (4216, 306, this));
+       staticCoins.add(new StaticCoins (4256, 306, this));
+       staticCoins.add(new StaticCoins (4296, 306, this));
+       staticCoins.add(new StaticCoins (4336, 306, this));
+       staticCoins.add(new StaticCoins (4362, 356, this));
        
-       //this.staticCoin = new StaticCoins(300, 356, this);
+       //Caixas misteriosas
+       mysteryBoxes.add(new MysteryBox(256, 356, this, coin));
+       mysteryBoxes.add(new MysteryBox(352, 356, this, coin));
+       mysteryBoxes.add(new MysteryBox(416, 356, this, coin));
+       mysteryBoxes.add(new MysteryBox(480, 356, this, coin));
+       mysteryBoxes.add(new MysteryBox(416, 260, this, coin));
+       mysteryBoxes.add(new MysteryBox(1696, 356, this, coin));
+       mysteryBoxes.add(new MysteryBox(2208, 356, this, coin));
+       mysteryBoxes.add(new MysteryBox(2240, 260, this, coin));
+       mysteryBoxes.add(new MysteryBox(2464, 356, this, coin));
+       mysteryBoxes.add(new MysteryBox(2560, 356, this, coin));
+       mysteryBoxes.add(new MysteryBox(2656, 356, this, coin));
+       mysteryBoxes.add(new MysteryBox(2560, 260, this, coin));
+       mysteryBoxes.add(new MysteryBox(3072, 260, this, coin));
+       mysteryBoxes.add(new MysteryBox(3104, 260, this, coin));
+       mysteryBoxes.add(new MysteryBox(4288, 356, this, coin));      
        
-       //this.mysteryBox = new MysteryBox(254, 356, this, coin);
-       
-       //enemies.add(new Goomba(1350, 445, 40, 40, 1, this, 0.5));
-       //enemies.add(new Goomba(700, 445, 40, 40, -1, this, 0.5));
-       //enemies.add(new Goomba(2350, 445, 40, 40, 1, this, 0.5));
+       enemies.add(new Goomba(1000, 445, 40, 40, -1, this, 0.5));
+       enemies.add(new Goomba(2560, 445, 40, 40, 1, this, 0.5));
+       enemies.add(new Goomba(2420, 445, 40, 40, -1, this, 0.5));
+       enemies.add(new Goomba(1630, 445, 40, 40, 1, this, 0.5));
        //enemies.add(new Goomba(4000, 445, 40, 40, -1, this, 0.5));
-       //enemies.add(new Koopa(800, 445, 40, 40, this));
-      // enemies.add(new Koopa(600, 445, 40, 40, this));
 
 
     }
@@ -279,19 +324,29 @@ public class GameLoop extends  JPanel{
         }
         
         mario.paint(g);
-        //coin.draw(g);
-        //staticCoin.draw(g);
-        //mysteryBox.draw(g);
         for(Enemies enemy: enemies){          
             enemy.draw(g);
         }
         
+        for (StaticCoins staticCoin : staticCoins){
+            staticCoin.draw(g);
+        }       
+        
+        for (MysteryBox mysteryBox : mysteryBoxes){
+            mysteryBox.draw(g);
+        }       
     }
     
     public void gamelLogic(ArrayList<Integer>input) throws IOException{
-        //coin.update();
-        //staticCoin.update();
-        //mysteryBox.update();
+        
+
+        for (StaticCoins staticCoin : staticCoins){
+            staticCoin.update(CameraX, CameraY);
+        }
+        
+        for (MysteryBox mysteryBox: mysteryBoxes){
+            mysteryBox.update(CameraX, CameraY);
+        }
         
         for (Tile tile : tilesNI) {
             tile.update(CameraX,CameraY);
@@ -302,8 +357,8 @@ public class GameLoop extends  JPanel{
         mario.move(input,0);
         System.out.println(CameraX);
         
-        for(Enemies enemie: enemies){
-            enemie.update(2,0,10,60);
+        for(Enemies enemy: enemies){
+            enemy.update(CameraX,CameraY,10,60);
         }
     }
     

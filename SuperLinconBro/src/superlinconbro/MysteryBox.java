@@ -43,11 +43,13 @@ public class MysteryBox {
         this.coin = coin;
     }
     
-    public void update() throws IOException{
+    public void update(int cameraX, int cameraY) throws IOException{
+        x += cameraX;
+        y += cameraY;
         animation(60);
         if(visible) collision();
         if(visible==false){
-            this.coin.update();
+            this.coin.update(cameraX, cameraY);
         }
     }
     
