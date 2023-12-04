@@ -55,6 +55,7 @@ public class Tile {
     
    
     public void draw(Graphics g) {  
+        //g.fillRect(this.x,this.y,this.width,this.height);
         g.drawImage(
             this.image, // Imagem a ser desenhada
             this.x,     // Posição x onde o tile será desenhado

@@ -76,7 +76,7 @@ public class Mario {
         this.game = game;
         this.width = 64;
         this.height = 64;
-        this.x = 0;
+        this.x = 20;
         this.y = 452;
 
         this.speedx = 0;
@@ -102,6 +102,7 @@ public class Mario {
         String path = new File("src/Sprites/metademario.png").getAbsolutePath();
         image = ImageIO.read(new File(path));
         System.out.println(path);
+        //this.game.setCameraX(this.game.getCameraX()-630);
     }
 
     public int getSpeedy(){
@@ -125,27 +126,41 @@ public class Mario {
 
     public void move(ArrayList<Integer> input, double deltaTime){
         this.currentState.handleInput(input);
-        this.x += this.speedx;
-        this.y += this.speedy;
         
-        this.game.tiles.forEach((tile) -> {
+        
+        /*this.game.tiles.forEach((tile) -> {
         if (
           this.x + this.width > tile.getX() +10 &&
           this.x + this.width < tile.getX() + 30 &&
-          this.y + this.height -15 >= tile.getY() &&
+          this.y + this.height -20 >= tile.getY() &&
           this.y < tile.getY() + tile.getHeight()){
             this.x = tile.getX() - this.width +10;
         }
         if (
           this.x < tile.getX()+this.getWidth()-10 &&
           this.x > tile.getX()+this.getWidth()-30 &&
-          this.y + this.height - 15>= tile.getY() &&
+          this.y + this.height - 20>= tile.getY() &&
           this.y < tile.getY() + tile.getHeight()
         )
-          this.x = tile.getX() + tile.getWidth() ; 
+          this.x = tile.getX() + tile.getWidth(); 
         
         
-      });
+      });*/
+        boolean collided = false;
+        for(Tile tile: this.game.tiles) {
+        if (
+          (this.x +this.speedx + this.width - 15 > tile.getX() &&
+          this.x +this.speedx +15< tile.getX() + tile.getWidth()  &&
+          this.y + this.height-15 > tile.getY() &&
+          this.y  < tile.getY() + tile.getHeight())){
+            collided = true;
+        }
+        }
+        this.y += this.speedy;
+        if(!collided){
+            this.x += this.speedx;
+            
+        }
         
         if (input.contains(39)) {
             this.speedx = 10;
@@ -173,11 +188,7 @@ public class Mario {
         System.out.println("D:"+DistanceToGround + " Y:" + (this.y + this.height));
      
         if (DistanceToGround == 0) {
-            if (this.y + this.height > 480) {
-             this.y = 480 - this.height;
-            } else {
               this.speedy += 2;
-            }
           } else  {
             this.speedy = 0;
             this.y = DistanceToGround - this.height + 10;
@@ -342,10 +353,10 @@ public class Mario {
         int distance = 0;        
         for(Tile tile: this.game.tiles){
           if (
-            this.x + this.width > tile.getX()+ 20 &&
+            this.x + this.width > tile.getX()+ 15 &&
             this.x < tile.getX()+tile.getWidth() - 20 &&
-            this.y + this.height + this.speedy >= tile.getY() +10 &&
-            this.y + this.height + this.speedy < tile.getY() + tile.getHeight()){
+            this.y + this.height + this.speedy  >= tile.getY() +10 &&
+            this.y + this.height < tile.getY() + tile.getHeight()){
                distance = tile.getY();
             } 
         }

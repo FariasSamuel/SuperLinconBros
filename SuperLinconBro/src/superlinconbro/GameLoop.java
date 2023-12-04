@@ -85,7 +85,10 @@ public class GameLoop extends  JPanel{
       tiles.add(new Tile(4288, 340,16 , 16, 384, 0, 400, 16));
        
        //tijolos
-       tiles.add(new Tile(0,480,960,20,0,0,0,0));
+       tiles.add(new Tile(0,480,1372,20,0,0,0,0));
+       tiles.add(new Tile(1436,480,516,20,0,0,0,0));
+       tiles.add(new Tile(2080 ,480 ,1372,20,0,0,0,0));
+       tiles.add(new Tile(3390 ,480,2210,20,0,0,0,0));
        tiles.add(new Tile(384, 340,16 , 16, 32, 0, 48, 16));
        tiles.add(new Tile(448, 340,16 , 16, 32, 0, 48, 16));
        tiles.add(new Tile(1664, 340,16 , 16, 32, 0, 48, 16));
