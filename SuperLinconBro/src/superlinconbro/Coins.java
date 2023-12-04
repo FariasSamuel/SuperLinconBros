@@ -18,6 +18,10 @@ public class Coins extends AbstractItems{
     private final double frequency = 2.0; // Frequência da função senoidal
     private double time = 0.0; 
     
+    public double getTime(){
+        return time;
+    }
+    
     
     public Coins (int x, int y, GameLoop game) throws IOException {
         this.setX(x);
@@ -36,7 +40,9 @@ public class Coins extends AbstractItems{
     }
     
     @Override
-    public void update (){
+    public void update (int cameraX,int cameraY){
+        this.setX(this.getX() + cameraX);
+        this.setY(this.getY() + cameraY);
         animation(60); 
         collision();
     }
@@ -44,7 +50,7 @@ public class Coins extends AbstractItems{
     @Override
         
     public void draw(Graphics g) {
-       if(this.isVisible()){ g.drawImage(this.getImage(),
+        if(this.isVisible()){ g.drawImage(this.getImage(),
                 this.getX(),
                 (int) (this.getY() + amplitude * sin(frequency * time)),
                 this.getX() + this.getWidth(),
@@ -54,8 +60,7 @@ public class Coins extends AbstractItems{
                 this.position[this.getFramex()] + 10,
                 16,
                 game);
-       }
-    }
+       }}
   
         public void animation(double deltaTime) {
         if (this.getFrameTimer() > this.getFrameInterval()) {
@@ -71,6 +76,8 @@ public class Coins extends AbstractItems{
         }
         this.time += deltaTime / 1000.0; // Converte deltaTime para segundos
     }
+        
+    @Override
     public void collision(){
       // Colisão por cima
     if (this.game.getMario().getY() < this.getY() + this.getHeight() &&
@@ -80,7 +87,7 @@ public class Coins extends AbstractItems{
         if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
     }
-
+        
     // Colisão pela esquerda
     if (this.game.getMario().getX() < this.getX() + this.getWidth() &&
         this.game.getMario().getX() >= this.getX() &&
@@ -89,6 +96,7 @@ public class Coins extends AbstractItems{
         if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
     }
+    
 
     // Colisão pela direita
     if (this.game.getMario().getX() + this.game.getMario().getWidth() > this.getX() &&
@@ -106,6 +114,7 @@ public class Coins extends AbstractItems{
         this.game.getMario().getY() >= this.getY()) {
         if(this.isVisible()) {this.incrementCounter();}
         this.setVisible(false);
-    }
+
     }  
-} 
+}
+}

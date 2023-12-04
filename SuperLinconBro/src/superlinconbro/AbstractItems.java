@@ -34,8 +34,13 @@ public abstract class AbstractItems {
     }
     
     
-    public void update(){
-        
+    public void update(int cameraX, int cameraY){
+        x += cameraX;
+        y += cameraY;
+    }
+    
+    public void collision(){
+    
     }
     
     public int getX() {
