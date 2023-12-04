@@ -33,7 +33,7 @@ enum States  {
 public abstract class MarioState {
     public States state;
     public Mario mario;
-    public MarioState(States state,Mario mario){
+    public MarioState(States state, Mario mario){
         this.state = state;
         this.mario = mario;
     }
@@ -43,4 +43,3 @@ public abstract class MarioState {
     public abstract void enter();
     public abstract void handleInput(ArrayList<Integer> input);
 }
-
