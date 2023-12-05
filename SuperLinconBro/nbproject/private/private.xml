@@ -3,6 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/Mario.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/Goomba.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/Enemies.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/Tile.java</file>
+            <file>file:/C:/Users/Mateus/Documents/SuperLinconBros/SuperLinconBro/src/superlinconbro/GameLoop.java</file>
+=======
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/superlinconbro/Mario.java</file>
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/Sprites/mapamario.png</file>
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/superlinconbro/Mushroom.java</file>
@@ -11,6 +18,7 @@
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/superlinconbro/MarioState.java</file>
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/superlinconbro/Tile.java</file>
             <file>file:/C:/Users/cecil/OneDrive/Desktop/SuperLinconl/SuperLinconBros/SuperLinconBro/src/superlinconbro/Falling.java</file>
+>>>>>>> 89dcd1dab50d44b60ced03f88780e2759e50270f
         </group>
     </open-files>
 </project-private>

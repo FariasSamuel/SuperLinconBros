@@ -301,12 +301,11 @@ public class GameLoop extends  JPanel{
        mysteryBoxes.add(new MysteryBox(3104, 260, this, coin));
        mysteryBoxes.add(new MysteryBox(4288, 356, this, coin));      
        
-       //enemies.add(new Goomba(1350, 445, 40, 40, 1, this, 0.5));
-       //enemies.add(new Goomba(700, 445, 40, 40, -1, this, 0.5));
-       //enemies.add(new Goomba(2350, 445, 40, 40, 1, this, 0.5));
-       //enemies.add(new Goomba(4000, 445, 40, 40, -1, this, 0.5));
-       //enemies.add(new Koopa(800, 445, 40, 40, this));
-      // enemies.add(new Koopa(600, 445, 40, 40, this));
+       enemies.add(new Goomba(800, 445, 40, 40, -1, this, 0.5));
+       enemies.add(new Goomba(1000, 445, 40, 40, -1, this, 0.5));
+       enemies.add(new Goomba(2560, 445, 40, 40, 1, this, 0.5));
+       enemies.add(new Goomba(2420, 445, 40, 40, -1, this, 0.5));
+       enemies.add(new Goomba(4362, 445, 40, 40, -1, this, 0.5));
 
 
     }
@@ -358,8 +357,8 @@ public class GameLoop extends  JPanel{
         mario.move(input,0);
         System.out.println(CameraX);
         
-        for(Enemies enemie: enemies){
-            enemie.update(2,0,10,60);
+        for(Enemies enemy: enemies){
+            enemy.update(CameraX,CameraY,10,60);
         }
     }
     
