@@ -51,32 +51,18 @@ public class Goomba extends Enemies {
 
         this.setOriginY(this.getOriginY() - speedy);
         
-        this.getGame().tiles.forEach((tile) -> {
-         
-            int increasedLeftBound = tile.getX() + 5;
-            int increasedRightBound = tile.getX() + tile.getWidth() - 5;
-            
-            //colidiu no lado direito  
-            if (
-              this.getX() + this.getWidth() > tile.getX() + increasedLeftBound &&
-              this.getX() + this.getWidth() < tile.getX() + increasedRightBound &&
-              this.getY() + this.getHeight() -15 >= tile.getY() &&
-              this.getY() < tile.getY() + tile.getHeight())
-            {
-                this.direction = this.direction*-1;
-            }
-            //colidiu no lado esquerdo  
-            else if (
-              this.getX() < increasedRightBound &&
-              this.getX() > increasedLeftBound &&
-              this.getY() + this.getHeight() - 15>= tile.getY() &&
-              this.getY() < tile.getY() + tile.getHeight()
-            )
-            {
-              this.direction = this.direction*-1;
-            }
         
-      });
+        boolean collided = false;
+        for(Tile tile: this.getGame().tiles) {
+        if (
+          (this.getX() +this.vx + this.getWidth()) - 15 > tile.getX() &&
+          this.getX() + this.vx +15 < tile.getX() + tile.getWidth()  &&
+          this.getY() + this.getHeight()-15 > tile.getY() &&
+          this.getY()  < tile.getY() + tile.getHeight()){
+            collided = true;
+        }
+        }
+        if(collided) this.direction = this.direction*-1;
         
         int distanceToGround = onGround();
         if(distanceToGround > 0){
@@ -85,13 +71,14 @@ public class Goomba extends Enemies {
             this.setY(this.getY() - speedy - this.vy);
         }
         
-        //if ((this.getX() > 1374 && this.getX() < 1436) || 
-        //    (this.getX() > 1952 && this.getX() < 2080) ||
-        //    (this.getX() > 3318 && this.getX() < 3390)) {
-        //        this.vy = -10;
-        //        this.vx = 0;
-        //        this.setY(this.getY() - speedy - this.vy);
-        //}
+        /*if ((this.getX() > 1374 && this.getX() < 1436) || 
+            (this.getX() > 1952 && this.getX() < 2080) ||
+            (this.getX() > 3318 && this.getX() < 3390)) {
+                this.vy = -10;
+                this.vx = 0;
+                this.setY(this.getY() - speedy - this.vy);
+        }
+        */
 
         
         

@@ -301,11 +301,12 @@ public class GameLoop extends  JPanel{
        mysteryBoxes.add(new MysteryBox(3104, 260, this, coin));
        mysteryBoxes.add(new MysteryBox(4288, 356, this, coin));      
        
+       enemies.add(new Goomba(800, 445, 40, 40, -1, this, 0.5));
        enemies.add(new Goomba(1000, 445, 40, 40, -1, this, 0.5));
        enemies.add(new Goomba(2560, 445, 40, 40, 1, this, 0.5));
        enemies.add(new Goomba(2420, 445, 40, 40, -1, this, 0.5));
        enemies.add(new Goomba(1630, 445, 40, 40, 1, this, 0.5));
-       //enemies.add(new Goomba(4000, 445, 40, 40, -1, this, 0.5));
+       enemies.add(new Goomba(4362, 445, 40, 40, -1, this, 0.5));
 
 
     }
