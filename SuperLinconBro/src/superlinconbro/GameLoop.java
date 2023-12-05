@@ -305,7 +305,6 @@ public class GameLoop extends  JPanel{
        enemies.add(new Goomba(1000, 445, 40, 40, -1, this, 0.5));
        enemies.add(new Goomba(2560, 445, 40, 40, 1, this, 0.5));
        enemies.add(new Goomba(2420, 445, 40, 40, -1, this, 0.5));
-       enemies.add(new Goomba(1630, 445, 40, 40, 1, this, 0.5));
        enemies.add(new Goomba(4362, 445, 40, 40, -1, this, 0.5));
 
 
