@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.imageio.ImageIO; 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import Files.Files; 
 
 
 /**
@@ -30,6 +31,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 
 /**
  *
@@ -61,6 +63,9 @@ public class GameLoop extends  JPanel{
       AskPlayer player = new AskPlayer();
       player.askName();
       this.playerName = player.getPlayerName();
+      
+      Files file = new Files();
+        file.writePlayerName("InfosJogador.txt", playerName);
 
       this.tiles = new ArrayList<Tile>();
       this.tilesNI = new ArrayList<Tile>();

@@ -13,6 +13,33 @@ import superlinconbro.AskPlayer;
  *
  * @author Antonio
  */
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Files {
+
+    public void writeFiles (String nomeArquivo, String informacao) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            writer.write(informacao);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // Método para escrever o nome do jogador no arquivo
+    public void writePlayerName(String nomeArquivo, String nomeJogador) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            writer.write("Nome do jogador: " + nomeJogador);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+/*
 public class Files {
     public static void main(String[] args) {
         
@@ -37,3 +64,4 @@ public class Files {
         }
     }
 }
+*/
