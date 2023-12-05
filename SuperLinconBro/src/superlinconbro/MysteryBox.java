@@ -48,7 +48,7 @@ public class MysteryBox {
         y += cameraY;
         animation(60);
         if(visible) collision();
-        if(visible==false){
+        else{
             this.coin.update(cameraX, cameraY);
         }
     }
