@@ -16,7 +16,6 @@ import java.io.IOException;
 public class StaticCoins extends AbstractItems{
     private GameLoop game;
     private final String path = new File("src/Sprites/coins.png").getAbsolutePath();
-    private Mario mario;
     private static final int xE = 50;
     private static final int yE = 50;
     
@@ -29,7 +28,7 @@ public class StaticCoins extends AbstractItems{
         this.setHeight(32);
         this.setImage(path);
         this.game = game;
-        this.mario = new Mario(game);
+        new Mario(game);
     }
     
     public void update(int cameraX, int cameraY){

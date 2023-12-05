@@ -24,7 +24,6 @@ public class MysteryBox {
     private GameLoop game;
     private final int position[] = {0,30,60};
     private boolean visible = true;
-    private Mario mario;
     private Coins coin;
     
     public MysteryBox(int x, int y, GameLoop game, Coins coin) throws IOException{
@@ -42,7 +41,6 @@ public class MysteryBox {
         image =  ImageIO.read(new File(path));   
         this.coin = coin;
     }
-    
     public void update(int cameraX, int cameraY) throws IOException{
         x += cameraX;
         y += cameraY;
