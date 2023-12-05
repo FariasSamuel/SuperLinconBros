@@ -22,7 +22,7 @@ import javax.swing.Timer;
 
 
 public class SuperLinconBro {
-
+    static Timer timer;
     /**
      * @param args the command line arguments
      */
@@ -47,7 +47,7 @@ public class SuperLinconBro {
             }
         });
         //System.out.print("oi");
-        Timer timer = new Timer(50, new ActionListener() {
+        timer = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {

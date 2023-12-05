@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -126,7 +127,7 @@ public class Mario {
 
     public void move(ArrayList<Integer> input, double deltaTime){
         this.currentState.handleInput(input);
-        
+        if(this.currentState.state.label != States.DYING.label){
         
         /*this.game.tiles.forEach((tile) -> {
         if (
@@ -156,6 +157,16 @@ public class Mario {
             collided = true;
         }
         }
+        
+        if (
+          (this.x +this.speedx + this.width - 15 > this.game.flag.getX() &&
+          this.x +this.speedx +15< this.game.flag.getX() + this.game.flag.getWidth()  &&
+          this.y + this.height-15 > this.game.flag.getY() &&
+          this.y  < this.game.flag.getY() + this.game.flag.getHeight())){
+           this.game.isRunning = false;
+            JOptionPane.showMessageDialog(null, "Vitoria!");
+        }
+        
         this.y += this.speedy;
         if(!collided){
             this.x += this.speedx;
@@ -198,6 +209,10 @@ public class Mario {
         }
       
         this.animation(60);
+        }else{
+            this.game.isRunning = false;
+            JOptionPane.showMessageDialog(null, "Game Over");
+        }
     }
     
     public void animation(double deltaTime){

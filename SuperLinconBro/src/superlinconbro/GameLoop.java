@@ -29,6 +29,7 @@ import java.awt.Graphics;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  *
@@ -52,7 +53,9 @@ public class GameLoop extends  JPanel{
     
     private ArrayList <StaticCoins> staticCoins = new ArrayList<>();
     private ArrayList <MysteryBox> mysteryBoxes = new ArrayList<>();
-
+    public Tile flag;
+    public boolean isRunning=true;
+    
     public GameLoop(int width) throws IOException{
         
       AskPlayer player = new AskPlayer();
@@ -62,7 +65,8 @@ public class GameLoop extends  JPanel{
       this.tiles = new ArrayList<Tile>();
       this.tilesNI = new ArrayList<Tile>();
       this.width = width;
-
+      
+      
       BufferedImage imagemAlternativa = ImageIO.read(new File("src/Sprites/mapamario.png"));
       BufferedImage imagemTiles = ImageIO.read(new File("src/Sprites/blocostile.png"));
       
@@ -215,7 +219,7 @@ public class GameLoop extends  JPanel{
        tiles.add(new Tile(5280, 308,80, 80, 3232,128, 3312, 208, imagemAlternativa));     
        
        //Bandeira
-       tiles.add(new Tile(5120, 116,32, 176, 3152,32,3184, 208, imagemAlternativa));    
+       flag = new Tile(5120, 116,32, 176, 3152,32,3184, 208, imagemAlternativa);    
        
        //moitas
        tilesNI.add(new Tile(193, 436,48, 16, 176, 144, 224, 160));
@@ -312,54 +316,61 @@ public class GameLoop extends  JPanel{
     
     @Override
     public void paint(Graphics g){
-        g.setColor(new Color(93,148,251));
-        g.fillRect(0, 0, 4000, 2000);
-        g.setColor(Color.black);
-        
-        for (Tile tile : tilesNI) {
-            tile.draw(g);
+        if(isRunning){
+            
+            g.setColor(new Color(93,148,251));
+            g.fillRect(0, 0, 4000, 2000);
+            g.setColor(Color.black);
+
+            for (Tile tile : tilesNI) {
+                tile.draw(g);
+            }
+            for (Tile tile : tiles) {
+                tile.draw(g);
+            }
+
+            mario.paint(g);
+            for(Enemies enemy: enemies){          
+                enemy.draw(g);
+            }
+
+            for (StaticCoins staticCoin : staticCoins){
+                staticCoin.draw(g);
+            }       
+
+            for (MysteryBox mysteryBox : mysteryBoxes){
+                mysteryBox.draw(g);
+            } 
+            flag.draw(g);
         }
-        for (Tile tile : tiles) {
-            tile.draw(g);
-        }
-        
-        mario.paint(g);
-        for(Enemies enemy: enemies){          
-            enemy.draw(g);
-        }
-        
-        for (StaticCoins staticCoin : staticCoins){
-            staticCoin.draw(g);
-        }       
-        
-        for (MysteryBox mysteryBox : mysteryBoxes){
-            mysteryBox.draw(g);
-        }       
     }
     
     public void gamelLogic(ArrayList<Integer>input) throws IOException{
         
+        if(isRunning){
+            flag.update(CameraX,CameraY);
+            for (StaticCoins staticCoin : staticCoins){
+                staticCoin.update(CameraX, CameraY);
+            }
 
-        for (StaticCoins staticCoin : staticCoins){
-            staticCoin.update(CameraX, CameraY);
+            for (MysteryBox mysteryBox: mysteryBoxes){
+                mysteryBox.update(CameraX, CameraY);
+            }
+
+            for (Tile tile : tilesNI) {
+                tile.update(CameraX,CameraY);
+            }
+            for (Tile tile : tiles) {
+                tile.update(CameraX,CameraY);
+            }
+            mario.move(input,0);
+            System.out.println(CameraX);
+
+            for(Enemies enemy: enemies){
+                enemy.update(CameraX,CameraY,10,60);
+            }
         }
         
-        for (MysteryBox mysteryBox: mysteryBoxes){
-            mysteryBox.update(CameraX, CameraY);
-        }
-        
-        for (Tile tile : tilesNI) {
-            tile.update(CameraX,CameraY);
-        }
-        for (Tile tile : tiles) {
-            tile.update(CameraX,CameraY);
-        }
-        mario.move(input,0);
-        System.out.println(CameraX);
-        
-        for(Enemies enemy: enemies){
-            enemy.update(CameraX,CameraY,10,60);
-        }
     }
     
     public void restart(){
